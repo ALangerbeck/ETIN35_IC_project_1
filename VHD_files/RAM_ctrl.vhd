@@ -15,7 +15,6 @@ entity RAM_ctrl is
             result_2 : in std_logic_vector(15 downto 0);
             result_3 : in std_logic_vector(15 downto 0);
             result_4 : in std_logic_vector(15 downto 0);
-            ready  : in std_logic
          );
 
 end RAM_ctrl;
