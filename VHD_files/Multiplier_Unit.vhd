@@ -40,6 +40,8 @@ architecture Multiplier_Unit_arch of Multiplier_Unit is
 
 begin
    
+    output <= result_reg;
+
    --Will probably need some kind of overflow check here or something like that. 
 
     operation : process(input, coefficient, enable, clear, result_reg)
