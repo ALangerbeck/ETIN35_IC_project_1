@@ -2,21 +2,21 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 
-entity shift_reg_8 is 
+entity shift_reg is 
     generic( data_size: integer);
     port (  clk     : in std_logic;
             rst     : in std_logic;
             shift_enable : std_logic;
-            input : in std_logic_vector(W-1 downto 0);
-            output  : out std_logic_vector(W-1 downto 0)
+            input : in std_logic_vector(data_size-1 downto 0);
+            output  : out std_logic_vector(data_size-1 downto 0)
          );
-end shift_reg_8; 
+end entity; 
 
-architecture behavioral of reg is
+architecture behavioral of shift_reg is
 
 -- Signal Declaration
 
-signal data0,data1,data2,data3,data4,data5,data6 : std_logic_vector(w-1 downto 0);
+signal data0,data1,data2,data3,data4,data5,data6 : std_logic_vector(data_size-1 downto 0);
 
 -- Entitiy Structure
 
@@ -34,7 +34,7 @@ begin
                 data5 <= (others => '0');
                 data6 <= (others => '0');
                 output <= (others => '0');
-            elsif shift_enable = '1'
+            elsif shift_enable = '1' then
                 data0 <= input;
                 data1 <= data0;
                 data2 <= data1;
@@ -43,7 +43,6 @@ begin
                 data5 <= data4;
                 data6 <= data5;
                 output <= data6;
-                output <= next_out;
             end if;
         end if;
         
