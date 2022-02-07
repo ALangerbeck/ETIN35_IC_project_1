@@ -8,13 +8,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity RAM_ctrl is 
 
-    port (  clk     : in std_logic;
-            rst     : in std_logic;
-            load    : in std_logic;
-            result_1 : in std_logic_vector(15 downto 0);
-            result_2 : in std_logic_vector(15 downto 0);
-            result_3 : in std_logic_vector(15 downto 0);
-            result_4 : in std_logic_vector(15 downto 0);
+    port (  clk     : in std_logic,
+            rst     : in std_logic,
+            load    : in std_logic,
+            result_1 : in std_logic_vector(15 downto 0),
+            result_2 : in std_logic_vector(15 downto 0),
+            result_3 : in std_logic_vector(15 downto 0),
+            result_4 : in std_logic_vector(15 downto 0)
          );
 
 end RAM_ctrl;

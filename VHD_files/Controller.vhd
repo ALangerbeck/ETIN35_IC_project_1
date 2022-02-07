@@ -4,7 +4,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+use ieee.std_logic_unsigned.all;
 
 entity Controller is 
 
@@ -55,7 +55,7 @@ begin
 
         case current_state is
             when s_idle =>
-                if(valid_input == '1') then 
+                if(valid_input = '1') then 
                     next_state <= s_shift_input;
                 end if; 
             when s_shift_input =>
@@ -67,7 +67,7 @@ begin
 
     read_indata : process
     begin 
-        if(current_state == s_shift_inout) then
+        if(current_state = s_shift_input) then
             next_shift_count <= shift_count + 1;
             case shift_count is 
                 when "00" =>
