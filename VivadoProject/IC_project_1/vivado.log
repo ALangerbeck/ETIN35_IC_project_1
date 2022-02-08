@@ -1017,3 +1017,8 @@ source shift_reg_tb.tcl
 INFO: [USF-XSim-96] XSim completed. Design snapshot 'shift_reg_tb_behav' loaded.
 INFO: [USF-XSim-97] XSim simulation ran for 2300ns
 launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:09 . Memory (MB): peak = 822.102 ; gain = 0.000
+update_compile_order -fileset sources_1
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Feb 07 12:43:50 2022...
