@@ -16,13 +16,16 @@ architecture behavioral of shift_reg is
 
 -- Signal Declaration
 
-signal data0,data1,data2,data3,data4,data5,data6 : std_logic_vector(data_size-1 downto 0);
+signal data0,data1,data2,data3,data4,data5,data6,data7 std_logic_vector(data_size-1 downto 0);
 
 -- Entitiy Structure
 
 begin
 
-    reg : process  ( clk, rst ) 
+
+    output <= data7;
+
+    reg : process  ( clk, rst, shift_enable, input, data0, data1, data2, data3, data4,data5, data6, data7) 
     begin 
         if rising_edge(clk) then 
             if rst = '1' then
@@ -42,7 +45,7 @@ begin
                 data4 <= data3;
                 data5 <= data4;
                 data6 <= data5;
-                output <= data6;
+                data7 <= data6;
             end if;
         end if;
         

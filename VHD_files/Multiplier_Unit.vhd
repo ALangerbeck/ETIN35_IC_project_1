@@ -47,9 +47,9 @@ begin
     operation : process(input, coefficient, enable, clear, result_reg)
     begin
         result_reg_next <= result_reg;
-        if(clear == '1') then
+        if(clear = '1') then
             result_reg_next <= (others => '0');
-        elsif (enable == '1') then
+        elsif (enable = '1') then
             result_reg_next = input * coefficient + result_reg;
 
         end if;
