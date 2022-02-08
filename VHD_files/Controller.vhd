@@ -183,7 +183,7 @@ begin
         end if;
     end process;
 
-    data_out : process()
+    data_out : process(mu_out_1,mu_out_2,mu_out_3,mu_out_4)
     begin 
         result_1 <= mu_out_1;
         result_2 <= mu_out_2;

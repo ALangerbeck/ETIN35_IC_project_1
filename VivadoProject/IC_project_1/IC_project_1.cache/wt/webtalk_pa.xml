@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Feb 07 12:43:41 2022">
+<application name="pa" timeStamp="Tue Feb 08 19:41:07 2022">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="b079232a1fbe4963bf676b201be9521f" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -19,109 +19,37 @@ This means code written to parse this file will need to be revisited each subseq
 <item name="Java Command Handlers">
 <property name="AddSources" value="2" type="JavaHandler"/>
 <property name="EditDelete" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="4" type="JavaHandler"/>
 <property name="SimulationClose" value="11" type="JavaHandler"/>
 <property name="SimulationRun" value="23" type="JavaHandler"/>
 <property name="SimulationRunForTime" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="APPLY, Apply" value="3" type="GuiResourceData"/>
-<property name="Controller.vhd, 180, 157" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 218, 606" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 224, 438" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 228, 266" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 232, 108" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 243, 205" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 265, 516" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 303, 356" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 350, 335" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 443, 334" value="1" type="GuiResourceData"/>
-<property name="FINISH, Finish" value="2" type="GuiResourceData"/>
-<property name="NEXT, Next " value="2" type="GuiResourceData"/>
-<property name="OK, OK" value="4" type="GuiResourceData"/>
-<property name="PAResourceAtoD.AbstractFileView_RELOAD, Reload" value="8" type="GuiResourceData"/>
-<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="7" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_LIVE_RUN, simulation_live_run_for_time" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="23" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_0_CRITICAL_WARNING, 4 critical warnings" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false, false, false, false, false, true" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 2, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 3, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 3, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, shift_reg.vhd], 3, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, shift_reg.vhd], 3, false, false, false, false, false, true" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, shift_reg.vhd], 3, false, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files], 1" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, TOP_matmult - Behavioral (TOP_matmult.vhd" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, reg - behavioral (shift_reg.vhd" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, shiftRegister - Behavioral (shiftRegister.vhd" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, shift_reg.vhd], 13, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, shift_reg.vhd], 13, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, shift_reg_tb.vhd], 12, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, shift_reg_tb.vhd], 12, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files], 9" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 8" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="24" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 10, false" value="4" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results, sim_1, [HDL 9-849] Unexpected EOF. [C:/Users/98all/Documents/LTH/ETIN35_IC_project_1/VHD_files/testBenches/shift_reg_tb.vhd:52]. ], 5, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results, sim_1, [HDL 9-849] Unexpected EOF. [C:/Users/98all/Documents/LTH/ETIN35_IC_project_1/VHD_files/testBenches/shift_reg_tb.vhd:64]. ], 5, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgView_INFORMATION_MESSAGES, (String" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_SELECT_TESTBENCH_TOP_MODULE, (String" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_ADVANCED, Advanced, 4" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_NETLIST, Netlist, 3" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_SIMULATION, Simulation, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.RemoveSourcesDialog_ALSO_DELETE, Also delete  project local files/directories from disk, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SelectTopModuleDialog_SELECT_TOP_MODULE, shift_reg_tb, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SimulationLiveRunForComp_SPECIFY_TIME_AND_UNITS, 1000" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SimulationLiveRunForComp_SPECIFY_TIME_AND_UNITS, ns, 3" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, input[7:0] ; f2 ; Array, 3, input[7:0], 0, true" value="2" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SimulationScopesPanel_SIMULATION_SCOPES_TREE_TABLE, shift_reg_tb ; shift_reg_tb(structural" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, Add Files" value="2" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_MAKE_LOCAL_COPY_OF_THESE_FILES_INTO, Copy sources into project, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="1" type="GuiResourceData"/>
-<property name="RAM_ctrl.vhd, 252, 182" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="13" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="15" type="GuiResourceData"/>
-<property name="RDIResource.ProgressDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 283, 73" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 390, 347" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 567, 147" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 666, 15" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 825, 95" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 957, -1" value="1" type="GuiResourceData"/>
-<property name="RDIResource.TclConsoleView_TCL_CONSOLE_CODE_EDITOR, 637, 13" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, input[7:0]], 3" value="2" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, output[7:0]], 4" value="8" type="GuiResourceData"/>
-<property name="RDIResourceCommand.RDICommands_DELETE, Remove File from Project..." value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 104, 214" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 123, 79" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 191, 253" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 231, 405" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 265, 300" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 303, 240" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 368, 253" value="1" type="GuiResourceData"/>
-<property name="shift_reg.vhd, 374, 404" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 113, 500" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 125, 27" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 140, 572" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 160, 80" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 2, 9" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 250, 567" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 299, 274" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 300, 297" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 367, 555" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 382, 368" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 4, 302" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 49, 177" value="1" type="GuiResourceData"/>
-<property name="shift_reg_tb.vhd, 61, 183" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 138, 503" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 149, 165" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 154, 192" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 157, 475" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 162, 197" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 182, 480" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 190, 212" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 203, 468" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 215, 192" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 217, 195" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 244, 313" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 267, 217" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 400, 146" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AbstractFileView_RELOAD, Reload" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files], 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_OPEN_PROJECT, Open Project" value="1" type="GuiResourceData"/>
+<property name="RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, coe_in" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="63" type="GuiMode"/>
+<property name="GuiMode" value="64" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="40" type="TclMode"/>
+<property name="TclMode" value="41" type="TclMode"/>
 </item>
 </section>
 </application>
