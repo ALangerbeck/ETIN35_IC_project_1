@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Tue Feb 08 19:41:07 2022">
+<application name="pa" timeStamp="Wed Feb 09 15:36:01 2022">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="b079232a1fbe4963bf676b201be9521f" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -17,39 +17,191 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="AddSources" value="2" type="JavaHandler"/>
-<property name="EditDelete" value="1" type="JavaHandler"/>
+<property name="AddSources" value="5" type="JavaHandler"/>
+<property name="EditDelete" value="2" type="JavaHandler"/>
 <property name="OpenProject" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="4" type="JavaHandler"/>
+<property name="SaveFileProxyHandler" value="4" type="JavaHandler"/>
 <property name="SimulationClose" value="11" type="JavaHandler"/>
 <property name="SimulationRun" value="23" type="JavaHandler"/>
 <property name="SimulationRunForTime" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="Controller.vhd, 138, 503" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 149, 165" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 154, 192" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 157, 475" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 162, 197" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 182, 480" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 190, 212" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 203, 468" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 215, 192" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 217, 195" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 244, 313" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 267, 217" value="1" type="GuiResourceData"/>
-<property name="Controller.vhd, 400, 146" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.AbstractFileView_RELOAD, Reload" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false" value="2" type="GuiResourceData"/>
+<property name="Controller.vhd, 140, 71" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 175, 310" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 175, 310, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 180, 245" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 185, 246" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 185, 249" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 186, 250" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 187, 265" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 189, 254" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 207, 180" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 211, 436" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 248, 313" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 249, 317" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 252, 431" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 254, 264" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 255, 433" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 268, 264" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 314, 253" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 316, 161" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 320, 45" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 328, 248" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 344, 431" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 345, 262" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 355, 199" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 355, 48" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 358, 268" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 367, 453" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 368, 250" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 372, 39" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 373, 62" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 392, 45" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 420, 252" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 425, 268" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 483, 158" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 557, 359" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 605, 410" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 75, 93" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 76, 103" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 80, 109" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 81, 114" value="1" type="GuiResourceData"/>
+<property name="Controller.vhd, 97, 197" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="3" type="GuiResourceData"/>
+<property name="NEXT, Next " value="3" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false" value="3" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, Controller.vhd], 2, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 2, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 2, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 3, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, RAM_ctrl.vhd], 3, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, shift_reg.vhd], 4, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, shift_reg.vhd], 4, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files], 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_OPEN_PROJECT, Open Project" value="1" type="GuiResourceData"/>
-<property name="RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, coe_in" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, TOP_matmult - TOP_matmult_arch (TOP_matmul.vhd" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, controller_tb.vhd], 8, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, controller_tb.vhd], 8, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, top_matmult.tb.vhd], 10, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, top_matmult.tb.vhd], 10, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, top_matmult.tb.vhd], 10, false, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, top_matmult_tb.vhd], 10, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files, top_matmult_tb.vhd], 10, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files], 7, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files], 7, true, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Non-module Files], 9" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, top_matmult_tb.vhd], 8, false" value="5" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, top_matmult_tb.vhd], 8, false, false, false, false, false, true" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files], 10" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, TOP_matmult - TOP_matmult_arch (TOP_matmul.vhd" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, shift_reg_tb - structural (shift_reg_tb.vhd" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 7" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 6" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, C:/Users/98all/Documents/LTH/ETIN35_IC_project_1/VivadoProject/IC_project_1/IC_project_1.xpr, 0" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results, sim_1, [HDL 9-806] Syntax error near TOP_matmult. [C:/Users/98all/Documents/LTH/ETIN35_IC_project_1/VHD_files/testBenches/top_matmult_tb.vhd:24]. ], 10, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results], 5" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, Add Files" value="3" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="1" type="GuiResourceData"/>
+<property name="RAM_ctrl.vhd, 235, 131" value="1" type="GuiResourceData"/>
+<property name="RAM_ctrl.vhd, 244, 124" value="1" type="GuiResourceData"/>
+<property name="RAM_ctrl.vhd, 245, 134" value="1" type="GuiResourceData"/>
+<property name="RAM_ctrl.vhd, 281, 166" value="1" type="GuiResourceData"/>
+<property name="RAM_ctrl.vhd, 47, 472" value="1" type="GuiResourceData"/>
+<property name="RAM_ctrl.vhd, 64, 127" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="RDIResource.ConfirmSaveTextEditsDialog_NO, No" value="1" type="GuiResourceData"/>
+<property name="RDIResource.HCodeEditor_BLANK_OPERATIONS, Blank Operations" value="1" type="GuiResourceData"/>
+<property name="RDIResource.HCodeEditor_COMMANDS_TO_FOLD_TEXT, Folding" value="1" type="GuiResourceData"/>
+<property name="RDIResource.HJFileChooserHelpers_REFRESH_FOLDER_VIEW_TO_REFLECT_EXTERNAL, (String" value="1" type="GuiResourceData"/>
+<property name="RDIResourceCommand.RDICommands_DELETE, Remove File from Project..." value="1" type="GuiResourceData"/>
+<property name="RDIResourceCommand.RDICommands_PASTE, Paste" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 1, 150" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 120, 247" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 144, 518" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 152, 521" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 160, 232" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 161, 520" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 179, 422" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 245, 201" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 278, 457" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 278, 469" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 300, 178" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 399, 278" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 410, 434" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 441, 141" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 76, 418" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 88, 88" value="1" type="GuiResourceData"/>
+<property name="TOP_matmul.vhd, 89, 301" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 111, 385" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 112, 200" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 118, 207" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 128, 367" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 135, 60" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 137, 246" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 141, 247" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 144, 244" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 149, 247" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 159, 248" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 172, 232" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 173, 182" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 203, 350" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 204, 269" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 208, 284" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 213, 196" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 215, 195" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 228, 523" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 248, 196" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 275, 298" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 275, 363" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 292, 129" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 306, 203" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 309, 249" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 314, 488" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 315, 348" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 315, 348, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 331, 348" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 343, 211" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 408, 266" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 51, 298" value="1" type="GuiResourceData"/>
+<property name="controller_tb.vhd, 97, 199" value="1" type="GuiResourceData"/>
+<property name="shift_reg.vhd, 381, 315" value="1" type="GuiResourceData"/>
+<property name="shift_reg_tb.vhd, 0, 12" value="1" type="GuiResourceData"/>
+<property name="shift_reg_tb.vhd, 112, 574" value="1" type="GuiResourceData"/>
+<property name="shift_reg_tb.vhd, 145, 177" value="1" type="GuiResourceData"/>
+<property name="shift_reg_tb.vhd, 253, 387, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="shift_reg_tb.vhd, 303, 130" value="1" type="GuiResourceData"/>
+<property name="top_matmult.tb.vhd, 281, 131" value="1" type="GuiResourceData"/>
+<property name="top_matmult.tb.vhd, 347, 54, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 1, 8" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 107, 482" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 107, 482, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 113, 162" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 114, 489" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 121, 308" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 126, 491" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 128, 314" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 132, 403" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 142, 145" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 169, 322" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 174, 535" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 185, 297" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 210, 316" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 293, 130" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 332, 353" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 333, 312" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 335, 131" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 340, 126" value="1" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 414, 298" value="2" type="GuiResourceData"/>
+<property name="top_matmult_tb.vhd, 450, 473" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="64" type="GuiMode"/>
+<property name="GuiMode" value="65" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="41" type="TclMode"/>
+<property name="TclMode" value="42" type="TclMode"/>
 </item>
 </section>
 </application>

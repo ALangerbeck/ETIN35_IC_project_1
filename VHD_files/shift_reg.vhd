@@ -16,7 +16,7 @@ architecture behavioral of shift_reg is
 
 -- Signal Declaration
 
-signal data0,data1,data2,data3,data4,data5,data6,data7 std_logic_vector(data_size-1 downto 0);
+signal data0,data1,data2,data3,data4,data5,data6,data7 : std_logic_vector(data_size-1 downto 0);
 
 -- Entitiy Structure
 

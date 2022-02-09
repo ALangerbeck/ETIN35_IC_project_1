@@ -8,6 +8,9 @@ entity Controller is
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
+            -- Temporary...maybe..perhaps
+            dataROM : in std_logic_vector(13 downto 0); 
+            --
             load    : out std_logic;
             result_1 : out std_logic_vector(15 downto 0);
             result_2 : out std_logic_vector(15 downto 0);
@@ -161,8 +164,10 @@ begin
             next_count_col <= "000"; 
             next_count_mul <= "00";
             clear <= '1';
-            next_coe_1 --assigne from rom memory
-            next_coe_2 --assigne from rom memory
+            -- Might change later
+            next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
+            next_coe_2 <= dataROM(13 downto 7); --assign from rom memory
+            --
         elsif(current_state = s_multiply_state) then
             next_count_mul <= count_mul +1;
             m_en <= '1';
@@ -171,8 +176,9 @@ begin
             mu_in3 <= shift_reg_out_3;
             mu_in4 <= shift_reg_out_4;
             if(count_mul(0)='1') then --unsure about this syntax for count_mul(0)
-                next_coe_1 --assigne from rom memory
-                next_coe_2 --assigne from rom memory
+            	--ROM shenanigans
+                next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
+                next_coe_2 <= dataROM(13 downto 7); --assign from rom memory
                 coe_in <= coe_2;
             else
                 coe_in <= coe_1;
