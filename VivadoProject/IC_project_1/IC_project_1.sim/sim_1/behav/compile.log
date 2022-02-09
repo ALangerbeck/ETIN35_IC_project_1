@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/98all/Documents/LTH/ETIN35_IC_project_1/VHD_files/shift_reg.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity shift_reg
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/98all/Documents/LTH/ETIN35_IC_project_1/VHD_files/testBenches/shift_reg_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity shift_reg_tb
