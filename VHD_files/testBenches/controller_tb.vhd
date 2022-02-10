@@ -1,5 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use STD.textio.all;
+use ieee.std_logic_textio.all;
 
 entity controller_tb is
 end entity;
@@ -16,6 +18,9 @@ architecture structural of  controller_tb is
 	signal input : std_logic_vector(7 downto 0) := (others => '0'); 
 	signal dataROM : std_logic_vector(13 downto 0) := (others => '0');
 	signal restult_1,restult_2,restult_3,restult_4: std_logic_vector(15 downto 0);
+	
+	constant period : time := 100 ns;
+	file input_file : text;
 	
 	--Component declaratio
 	component Controller is 
@@ -36,6 +41,10 @@ architecture structural of  controller_tb is
 	
 begin
 
+	clk <= not(clk) after period;
+	rst <= '1','0' after 1* period;
+	
+	
 	DUT: controller port map(
 		clk => clk,
 		rst => rst,
@@ -49,7 +58,32 @@ begin
 		result_4  => result_4,
 		ready => ready );
 		
+	process(valid_input)
+		variable v_ILINE     : line;
+	    variable v_SPACE     : character;
+	    
+	    begin
+	    if (valid_input = '1') then
+	    	
+	    	file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\input_stimuli.txt",  read_mode);
+			while not endfile(input_file) loop
+				input <= readline(input_file,v_ILINE);
+				wait for period;
+			end loop;
+			file_close(input_file)
+		end if;
+	end process;
+		  
+	
+	
+	
+	input <= "00000000",
+		 
+	
+	valid_input <= '0',
+		'1' after 2*periods;
 		
+	
 
 
 

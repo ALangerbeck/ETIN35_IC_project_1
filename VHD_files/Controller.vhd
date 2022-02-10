@@ -291,7 +291,7 @@ begin
         output  => count_mul
     );
 
-    coe_1 : reg 
+    coe_1_reg : reg 
     generic map( 
         W => 7)
     port map(  
@@ -301,7 +301,7 @@ begin
         output  => coe_1
     );
 
-    coe_2 : reg 
+    coe_2_reg : reg 
     generic map( 
         W => 7)
     port map(  
