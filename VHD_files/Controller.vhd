@@ -39,7 +39,7 @@ architecture Controller_arch of Controller is
     signal shift_reg_out_1, shift_reg_out_2, shift_reg_out_3, shift_reg_out_4 : std_logic_vector(7 downto 0);
     signal mu_in1, mu_in2, mu_in3, mu_in4 : std_logic_vector(7 downto 0);
     signal coe_in : std_logic_vector(6 downto 0);
-    signal mu_out_1, mu_out_2, mu_out_3, mu_out_4 : std_logic_vector(17 downto 0);
+    signal mu_out_1, mu_out_2, mu_out_3, mu_out_4 : std_logic_vector(17 downto 0); --Conplains should be 16 elements has 18
     signal coe_1, next_coe_1, coe_2, next_coe_2 : std_logic_vector(6 downto 0);
     signal address : std_logic_vector(3 downto 0) := "0000";
     signal next_address : std_logic_vector(3 downto 0);

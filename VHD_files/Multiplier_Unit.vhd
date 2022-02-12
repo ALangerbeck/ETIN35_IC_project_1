@@ -4,6 +4,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 
 entity Multiplier_Unit is 
@@ -40,7 +41,7 @@ architecture Multiplier_Unit_arch of Multiplier_Unit is
 
 begin
    
-    output <= result_reg;
+    --output <= result_reg;
 
    --Will probably need some kind of overflow check here or something like that. 
 
@@ -50,18 +51,18 @@ begin
         if(clear = '1') then
             result_reg_next <= (others => '0');
         elsif (enable = '1') then
-            result_reg_next = input * coefficient + result_reg;
+            result_reg_next <= input * coefficient + result_reg;
 
         end if;
         
     end process;
 
     inst_reg : reg 
-        generic map ( W => 8);
-        port (  clk     => clk,
+        generic map ( W => 8)
+        port map(  clk     => clk,
                 rst     => rst,
-                next_out => result_reg_next;
-                output  => result_reg;
+                next_out => result_reg_next,
+                output  => result_reg
              ); 
 
 
