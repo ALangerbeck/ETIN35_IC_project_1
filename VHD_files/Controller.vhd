@@ -12,10 +12,10 @@ entity Controller is
             dataROM : in std_logic_vector(13 downto 0); 
             --
             load    : out std_logic;
-            result_1 : out std_logic_vector(15 downto 0);
-            result_2 : out std_logic_vector(15 downto 0);
-            result_3 : out std_logic_vector(15 downto 0);
-            result_4 : out std_logic_vector(15 downto 0);
+            result_1 : out std_logic_vector(17 downto 0);
+            result_2 : out std_logic_vector(17 downto 0);
+            result_3 : out std_logic_vector(17 downto 0);
+            result_4 : out std_logic_vector(17 downto 0);
             ready  : out std_logic
          );
 
@@ -32,8 +32,8 @@ architecture Controller_arch of Controller is
     signal next_shift_count : std_logic_vector (1 downto 0);
     signal count : std_logic_vector (4 downto 0) := "00000";
     signal next_count : std_logic_vector (4 downto 0);
-    signal count_col, next_count_col : std_logic_vector(2 downto 0);
-    signal count_mul, next_count_mul : std_logic_vector(1 downto 0);
+    signal count_col, next_count_col : std_logic_vector(2 downto 0); --could be smaller
+    signal count_mul, next_count_mul : std_logic_vector(2 downto 0);
     signal en1, en2, en3, en4, m_en, clear : std_logic;
     signal shift_reg_in_1, shift_reg_in_2, shift_reg_in_3, shift_reg_in_4 : std_logic_vector(7 downto 0);
     signal shift_reg_out_1, shift_reg_out_2, shift_reg_out_3, shift_reg_out_4 : std_logic_vector(7 downto 0);
@@ -54,7 +54,7 @@ architecture Controller_arch of Controller is
                 coefficient : in std_logic_vector(6 downto 0);
                 enable    : in std_logic;
                 clear    : in std_logic;
-                result : out std_logic_vector(15 downto 0)
+                result : out std_logic_vector(17 downto 0)
              );
     end component;
 
@@ -79,16 +79,15 @@ architecture Controller_arch of Controller is
 
 begin
    
-    state_logic : process(current_state, valid_input, count)
+    state_logic : process(current_state, valid_input, count,count_col)
     begin 
         next_state <= current_state;
         ready <= '0';
-        load <= '0';
         case current_state is
             when s_idle =>
+            	ready <= '1';
                 if(valid_input = '1') then 
                     next_state <= s_shift_input;
-                    ready <= '1';
                 end if; 
             when s_shift_input =>
                 if(count = "11111") then --not compeletly sure of this timing, maybe change, but then neccessary to change ASMD
@@ -99,7 +98,8 @@ begin
             when s_multiply_state =>
                 if(count_col = "111") then 
                     next_state <= s_prepare_next_column;
-                    load <= '1';
+        			--next_count_col <= count_col + 1;
+                    --load <= '1';
                 end if;
             when s_prepare_next_column =>
                 if(count_mul = "11") then 
@@ -150,7 +150,8 @@ begin
         end if;
     end process; 
 
-    operation_ctrl : process(current_state)
+    operation_ctrl : process(current_state,coe_1,coe_2,count_col,count_mul,address,dataROM,count_mul,
+    	shift_reg_out_1,shift_reg_out_2,shift_reg_out_3,shift_reg_out_4)
     begin 
         m_en <= '0';
         clear <= '0';
@@ -160,9 +161,11 @@ begin
         next_count_col <= count_col;
         next_count_mul <= count_mul;
         next_address <= address;
+        load <= '0';
+        
         if(current_state = s_prepare_operation) then 
             next_count_col <= "000"; 
-            next_count_mul <= "00";
+            next_count_mul <= "000";
             clear <= '1';
             -- Might change later
             next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
@@ -175,7 +178,7 @@ begin
             mu_in2 <= shift_reg_out_2;
             mu_in3 <= shift_reg_out_3;
             mu_in4 <= shift_reg_out_4;
-            if(count_mul(0)='1') then --unsure about this syntax for count_mul(0)
+            if(count_mul(0) = '1') then --unsure about this syntax for count_mul(0)
             	--ROM shenanigans
                 next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
                 next_coe_2 <= dataROM(13 downto 7); --assign from rom memory
@@ -184,6 +187,12 @@ begin
                 coe_in <= coe_1;
                 next_address <= address +1;
             end if;
+            
+            if(count_mul = "111") then
+                        	next_count_col <= count_col + 1;
+                            load <= '1';
+            end if;
+            
         elsif(current_state = s_prepare_next_column) then 
             clear <= '1';
         end if;
@@ -283,7 +292,7 @@ begin
 
     count_mul_reg : reg 
     generic map( 
-        W => 2)
+        W => 3)
     port map(  
         clk     => clk,
         rst     => rst,
