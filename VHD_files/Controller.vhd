@@ -16,7 +16,8 @@ entity Controller is
             result_2 : out std_logic_vector(17 downto 0);
             result_3 : out std_logic_vector(17 downto 0);
             result_4 : out std_logic_vector(17 downto 0);
-            ready  : out std_logic
+            ready  : out std_logic;
+            address_out: out std_logic_vector(3 downto 0)
          );
 
 end Controller;
@@ -78,8 +79,9 @@ architecture Controller_arch of Controller is
     end component; 
 
 begin
+   	address_out <= address;
    
-    state_logic : process(current_state, valid_input, count,count_col)
+    state_logic : process(current_state, valid_input, count,count_col,clk)
     begin 
         next_state <= current_state;
         ready <= '0';
@@ -96,13 +98,13 @@ begin
             when s_prepare_operation =>
                 next_state <= s_multiply_state;
             when s_multiply_state =>
-                if(count_col = "111") then 
+                if(count_mul = "111") then 
                     next_state <= s_prepare_next_column;
         			--next_count_col <= count_col + 1;
                     --load <= '1';
                 end if;
             when s_prepare_next_column =>
-                if(count_mul = "11") then 
+                if(count_col = "100") then 
                     next_state <= s_idle;
                 else
                     next_state <= s_multiply_state;
@@ -122,8 +124,9 @@ begin
         shift_reg_in_3 <= input;
         shift_reg_in_4 <= input;
         next_shift_count <= shift_count;
-        next_count <= count; 
-        if(current_state = s_shift_input) then
+        next_count <= count;
+        case current_state is
+        when s_shift_input =>
             next_shift_count <= shift_count + 1;
             next_count <= count +1;
             case shift_count is 
@@ -138,7 +141,7 @@ begin
                 when others => -- should never happen but vivado complains
 
             end case;
-        elsif(current_state = s_multiply_state) then 
+        when s_multiply_state =>
             en1 <= '1';
             en2 <= '1';
             en3 <= '1';
@@ -147,11 +150,13 @@ begin
             shift_reg_in_2 <= shift_reg_out_2;
             shift_reg_in_3 <= shift_reg_out_3;
             shift_reg_in_4 <= shift_reg_out_4;
-        end if;
+         when others =>
+         
+        end case;
     end process; 
 
     operation_ctrl : process(current_state,coe_1,coe_2,count_col,count_mul,address,dataROM,count_mul,
-    	shift_reg_out_1,shift_reg_out_2,shift_reg_out_3,shift_reg_out_4)
+    	shift_reg_out_1,shift_reg_out_2,shift_reg_out_3,shift_reg_out_4,clk)
     begin 
         m_en <= '0';
         clear <= '0';
@@ -163,7 +168,8 @@ begin
         next_address <= address;
         load <= '0';
         
-        if(current_state = s_prepare_operation) then 
+        case current_state is
+        when s_prepare_operation =>
             next_count_col <= "000"; 
             next_count_mul <= "000";
             clear <= '1';
@@ -171,7 +177,7 @@ begin
             next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
             next_coe_2 <= dataROM(13 downto 7); --assign from rom memory
             --
-        elsif(current_state = s_multiply_state) then
+        when s_multiply_state =>
             next_count_mul <= count_mul +1;
             m_en <= '1';
             mu_in1 <= shift_reg_out_1;
@@ -193,9 +199,15 @@ begin
                             load <= '1';
             end if;
             
-        elsif(current_state = s_prepare_next_column) then 
+        when s_prepare_next_column =>
             clear <= '1';
-        end if;
+        when s_idle =>
+        	next_count_col <= (others =>'0');
+        	--next_count <= (others =>'0');
+        when others =>
+        
+        end case;
+        
     end process;
 
     data_out : process(mu_out_1,mu_out_2,mu_out_3,mu_out_4)
