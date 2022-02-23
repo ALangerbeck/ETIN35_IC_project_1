@@ -174,8 +174,9 @@ begin
             next_count_mul <= "000";
             clear <= '1';
             -- Might change later
-            next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
-            next_coe_2 <= dataROM(13 downto 7); --assign from rom memory
+            next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
+            next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
+            next_address <= address +1;
             --
         when s_multiply_state =>
             next_count_mul <= count_mul +1;
@@ -186,8 +187,8 @@ begin
             mu_in4 <= shift_reg_out_4;
             if(count_mul(0) = '1') then --unsure about this syntax for count_mul(0)
             	--ROM shenanigans
-                next_coe_1 <= dataROM(6 downto 0); --assign from rom memory
-                next_coe_2 <= dataROM(13 downto 7); --assign from rom memory
+                next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
+                next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
                 coe_in <= coe_2;
             else
                 coe_in <= coe_1;
