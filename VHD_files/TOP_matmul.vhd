@@ -12,7 +12,6 @@ entity TOP_matmult is
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
-            dataROM : in std_logic_vector(13 downto 0); -- DATA ROM
             ready  : out std_logic
          );
 
@@ -25,7 +24,8 @@ architecture TOP_matmult_arch of TOP_matmult is
     signal result_1,result_2,result_3,result_4 : std_logic_vector(15 downto 0);
     signal internal_ready : std_logic;
     signal load : std_logic;
-
+    signal rom_address: std_logic_vector(3 downto 0);
+    signal romData : std_logic_vector(13 downto 0);
 -- COMPONENT DEFINITION
 
     component Controller is 
@@ -41,7 +41,8 @@ architecture TOP_matmult_arch of TOP_matmult is
                result_2 : out std_logic_vector(15 downto 0);
                result_3 : out std_logic_vector(15 downto 0);
                result_4 : out std_logic_vector(15 downto 0);
-               ready  : out std_logic
+               ready  : out std_logic;
+               address_out: out std_logic_vector(3 downto 0)
          );
     end component;
 
@@ -52,12 +53,17 @@ architecture TOP_matmult_arch of TOP_matmult is
             result_1 : in std_logic_vector(15 downto 0);
             result_2 : in std_logic_vector(15 downto 0);
             result_3 : in std_logic_vector(15 downto 0);
-            result_4 : in std_logic_vector(15 downto 0);
-            ready  : in std_logic
+            result_4 : in std_logic_vector(15 downto 0)
          );
 
     end component;
-
+    
+    component fake_ROM is
+    port ( clk : in std_logic;
+           address_input : in std_logic_vector(3 downto 0);
+           dataRom_output : out std_logic_vector(13 downto 0)
+         );
+    end component;
 
 begin
    
@@ -67,13 +73,14 @@ begin
             rst     => rst,
             input   => input,
             valid_input => valid_input,
-            dataROM => dataROM,
+            dataROM => romData,
             load    => load,
             result_1 => result_1,
             result_2 => result_2,
             result_3 => result_3,
             result_4 => result_4,
-            ready  => ready
+            ready  => ready,
+            address_out => rom_address
          );
 
     inst_RAM_ctrl : RAM_ctrl 
@@ -86,6 +93,11 @@ begin
             result_3 => result_3,
             result_4 => result_4
          );
-
+    inst_ROM : fake_rom
+    port map(
+        clk => clk,
+        address_input => rom_address,
+        dataRom_output => romData
+    );
 
 end TOP_matmult_arch;
