@@ -21,7 +21,7 @@ architecture TOP_matmult_arch of TOP_matmult is
 
 -- SIGNAL DEFINITIONS
 
-    signal result_1,result_2,result_3,result_4 : std_logic_vector(15 downto 0);
+    signal result_1,result_2,result_3,result_4 : std_logic_vector(17 downto 0);
     signal internal_ready : std_logic;
     signal load : std_logic;
     signal rom_address: std_logic_vector(3 downto 0);
@@ -37,10 +37,10 @@ architecture TOP_matmult_arch of TOP_matmult is
                dataROM : in std_logic_vector(13 downto 0); 
                --
                load    : out std_logic;
-               result_1 : out std_logic_vector(15 downto 0);
-               result_2 : out std_logic_vector(15 downto 0);
-               result_3 : out std_logic_vector(15 downto 0);
-               result_4 : out std_logic_vector(15 downto 0);
+               result_1 : out std_logic_vector(17 downto 0);
+               result_2 : out std_logic_vector(17 downto 0);
+               result_3 : out std_logic_vector(17 downto 0);
+               result_4 : out std_logic_vector(17 downto 0);
                ready  : out std_logic;
                address_out: out std_logic_vector(3 downto 0)
          );
@@ -50,10 +50,10 @@ architecture TOP_matmult_arch of TOP_matmult is
     port (  clk     : in std_logic;
             rst     : in std_logic;
             load    : in std_logic;
-            result_1 : in std_logic_vector(15 downto 0);
-            result_2 : in std_logic_vector(15 downto 0);
-            result_3 : in std_logic_vector(15 downto 0);
-            result_4 : in std_logic_vector(15 downto 0)
+            result_1 : in std_logic_vector(17 downto 0);
+            result_2 : in std_logic_vector(17 downto 0);
+            result_3 : in std_logic_vector(17 downto 0);
+            result_4 : in std_logic_vector(17 downto 0)
          );
 
     end component;
@@ -93,6 +93,7 @@ begin
             result_3 => result_3,
             result_4 => result_4
          );
+         
     inst_ROM : fake_rom
     port map(
         clk => clk,
