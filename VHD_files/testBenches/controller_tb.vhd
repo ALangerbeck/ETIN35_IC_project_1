@@ -95,9 +95,7 @@ begin
 		while line_counter <= target_line loop
 			if not endfile(rom_file) then
 				readline(rom_file,lineData);
-				if line_counter = target_line then
-					read(lineData,readData);
-				end if;
+				read(lineData,readData);
 			end if;
 			line_counter := line_counter + 1;
 		end loop;
