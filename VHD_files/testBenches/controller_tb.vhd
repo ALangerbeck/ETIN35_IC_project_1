@@ -82,34 +82,51 @@ begin
 			wait;
 	end process;
 	
-	read_rom: process(address_rom,clk)
-		variable target_line:	integer; 
-		variable line_counter: integer := 0;
-		variable lineData :	line;
-		variable readData : std_logic_vector(13 downto 0);
-		
-		
-		begin
-		file_open(rom_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\RomCoeff.txt", read_mode);
-		target_line := to_integer(unsigned(address_rom));
-		while line_counter <= target_line loop
-			if not endfile(rom_file) then
-				readline(rom_file,lineData);
-				if line_counter = target_line then
-					read(lineData,readData);
-				end if;
-			end if;
-			line_counter := line_counter + 1;
-		end loop;
-		dataROM <= readData;
-		file_close(rom_file);
-	end process;
+	read_rom: process(address_rom)
+	   
+	   begin
+	   case address_rom is
+	       when "0000" => dataROM <= "00000110010110";
+	       when "0001" => dataROM <= "00010110000001";
+	       when "0010" => dataROM <= "00010000000011";
+	       when "0011" => dataROM <= "00000010000010";
+	       when "0100" => dataROM <= "00010000001111";
+	       when "0101" => dataROM <= "00000100000100";
+	       when "0110" => dataROM <= "00011000000110";
+	       when "0111" => dataROM <= "00000010000010";
+	       when "1000" => dataROM <= "00100100101000";
+	       when "1001" => dataROM <="00000110000010";
+	       when "1010" => dataROM <="00100000001001";
+           when "1011" => dataROM <="00000010000010";
+           when "1100" => dataROM <="00000010001010";
+           when "1101" => dataROM <="00001000000000";
+           when "1110" => dataROM <="00000100001100";
+           when "1111" => dataROM <="00000010000010";
+           when others => dataROM <= (others => '0');
+           end case;
+	   end process;
 	
-	--write_ram : process(load)
-			
-	--end process;
-		  
-	--input <= "00000000",
-	--valid_input <= '0',
-	--	'1' after 2*periods;
+--	read_rom: process
+--		variable target_line:	integer; 
+--		variable line_counter: integer := 0;
+--		variable lineData :	line;
+--		variable readData : std_logic_vector(13 downto 0);
+		
+		
+--		begin
+--		wait until address_rom'event;
+--		file_open(rom_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\RomCoeff.txt", read_mode);
+--		target_line := to_integer(unsigned(address_rom));
+--		while not endfile(rom_file) loop --line_counter <= target_line loop
+--				readline(rom_file,lineData);
+--				read(lineData,readData);
+--				if(line_counter = target_line) then
+--				    dataROM <= readData;
+--				end if;
+--                line_counter := line_counter + 1;
+--		end loop;
+--		--dataROM <= readData;
+--		file_close(rom_file);
+--	end process;
+
 end structural;
