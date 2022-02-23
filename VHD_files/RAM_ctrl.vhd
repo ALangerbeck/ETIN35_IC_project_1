@@ -25,7 +25,7 @@ architecture RAM_ctrl_arch of RAM_ctrl is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
     
-    type state_type is (s_start_save, s_save2, s_save3, s_save_4);
+    type state_type is (s_start_save, s_save2, s_save3, s_save4);
     signal current_state : state_type;
     signal next_state : state_type;
     signal result_1_reg, result_1_next : std_logic_vector(17 downto 0);
@@ -134,15 +134,17 @@ begin
         output  => address
     );
 
-    load_reg : reg 
-    generic map( 
-        W => 1)
-    port map(  
-        clk     => clk,
-        rst     => rst,
-        next_out => load,
-        output  => start
-    );
+    load_reg : process(clk,rst)   
+    begin 
+        if rising_edge(clk) then 
+            if rst = '1' then
+                start <= '0';
+            else 
+                start <= load;
+            end if;
+        end if;
+        
+    end process; 
 
     r_result_1 : reg 
     generic map( 

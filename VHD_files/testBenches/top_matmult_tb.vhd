@@ -20,7 +20,6 @@ architecture structural of  top_matmult_tb is
 	signal ready : std_logic;
 	--Component declaration
 	component TOP_matmult is 
-	
 		 port(  clk     : in std_logic;
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
@@ -48,8 +47,10 @@ begin
 	    variable variable_input : std_logic_vector(7 downto 0);
 	    
 	    begin
-	        wait until rst = '0';
-                wait until ready = '1';
+	            wait until rst = '0' and ready = '1';
+	            valid_input <= '1';
+	            wait for period;
+	            valid_input <= '0';
                 file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\input_stimuli.txt",  read_mode);
                 while not endfile(input_file) loop
                     readline(input_file,v_ILINE);
