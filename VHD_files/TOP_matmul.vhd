@@ -12,6 +12,7 @@ entity TOP_matmult is
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
+            read_ram : in std_logic; -- added for reading ram function
             ready  : out std_logic
          );
 

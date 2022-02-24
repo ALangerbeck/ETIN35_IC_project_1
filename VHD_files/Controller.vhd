@@ -11,6 +11,7 @@ entity Controller is
             -- Temporary...maybe..perhaps
             dataROM : in std_logic_vector(13 downto 0); 
             --
+            read_ram : in std_logic; -- added for reading ram function
             load    : out std_logic;
             result_1 : out std_logic_vector(17 downto 0);
             result_2 : out std_logic_vector(17 downto 0);
@@ -26,7 +27,7 @@ architecture Controller_arch of Controller is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
 
-    type state_type is (s_idle, s_shift_input, s_prepare_operation, s_multiply_state, s_prepare_next_column); --not sure about this.
+    type state_type is (s_idle, s_shift_input, s_prepare_operation, s_multiply_state, s_prepare_next_column, s_read_ram); --not sure about this.
     signal current_state : state_type := s_idle;
     signal next_state : state_type;
     signal shift_count : std_logic_vector (1 downto 0) := "00";
@@ -90,6 +91,8 @@ begin
             	ready <= '1';
                 if(valid_input = '1') then 
                     next_state <= s_shift_input;
+                elsif(read_ram = '1') then 
+                    next_state <= s_read_ram;
                 end if; 
             when s_shift_input =>
                 if(count = "11111") then --not compeletly sure of this timing, maybe change, but then neccessary to change ASMD
@@ -108,6 +111,10 @@ begin
                     next_state <= s_idle;
                 else
                     next_state <= s_multiply_state;
+                end if;
+            when s_read_ram => 
+                if() then 
+
                 end if;
         end case;
 
@@ -171,7 +178,6 @@ begin
         case current_state is
         when s_prepare_operation =>
             next_count_col <= "000"; 
-            next_count_mul <= "000";
             clear <= '1';
             -- Might change later
             next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
@@ -204,7 +210,10 @@ begin
             clear <= '1';
         when s_idle =>
         	next_count_col <= (others =>'0');
+            next_count_mul <= "000";
         	--next_count <= (others =>'0');
+        when s_read_ram =>
+
         when others =>
         
         end case;

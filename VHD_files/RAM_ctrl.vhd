@@ -74,7 +74,7 @@ begin
         result_2_next <= result_2_reg;
         result_3_next <= result_3_reg;
         result_4_next <= result_4_reg;
-        if(load='1') then
+        if(start='1') then
             result_1_next <= result_1;
             result_2_next <= result_2;
             result_3_next <= result_3;
