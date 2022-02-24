@@ -7,6 +7,8 @@ entity RAM_ctrl is
     port(  clk     : in std_logic;
             rst     : in std_logic;
             load    : in std_logic;
+            read_ram : in std_logic; -- added for reading ram function
+            input   : in std_logic_vector(7 downto 0);
             result_1 : in std_logic_vector(17 downto 0);
             result_2 : in std_logic_vector(17 downto 0);
             result_3 : in std_logic_vector(17 downto 0);

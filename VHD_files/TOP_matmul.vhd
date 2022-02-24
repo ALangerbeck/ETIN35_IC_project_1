@@ -37,6 +37,7 @@ architecture TOP_matmult_arch of TOP_matmult is
                -- Temporary...maybe..perhaps
                dataROM : in std_logic_vector(13 downto 0); 
                --
+               read_ram : in std_logic; -- added for reading ram function
                load    : out std_logic;
                result_1 : out std_logic_vector(17 downto 0);
                result_2 : out std_logic_vector(17 downto 0);
@@ -51,6 +52,8 @@ architecture TOP_matmult_arch of TOP_matmult is
     port (  clk     : in std_logic;
             rst     : in std_logic;
             load    : in std_logic;
+            read_ram : in std_logic; -- added for reading ram function
+            input   : in std_logic_vector(7 downto 0);
             result_1 : in std_logic_vector(17 downto 0);
             result_2 : in std_logic_vector(17 downto 0);
             result_3 : in std_logic_vector(17 downto 0);
@@ -75,6 +78,7 @@ begin
             input   => input,
             valid_input => valid_input,
             dataROM => romData,
+            read_ram => read_ram,
             load    => load,
             result_1 => result_1,
             result_2 => result_2,
@@ -89,6 +93,8 @@ begin
             clk     => clk,
             rst     => rst,
             load    => load,
+            read_ram => read_ram,
+            input    => input,
             result_1 => result_1,
             result_2 => result_2,
             result_3 => result_3,
