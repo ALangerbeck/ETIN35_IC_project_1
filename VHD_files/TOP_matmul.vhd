@@ -60,7 +60,7 @@ architecture TOP_matmult_arch of TOP_matmult is
             result_2 : in std_logic_vector(17 downto 0);
             result_3 : in std_logic_vector(17 downto 0);
             result_4 : in std_logic_vector(17 downto 0);
-            output : in std_logic_vector(8 downto 0)
+            output : out std_logic_vector(8 downto 0)
          );
 
     end component;

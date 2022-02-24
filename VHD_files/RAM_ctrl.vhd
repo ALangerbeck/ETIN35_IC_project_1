@@ -14,7 +14,7 @@ entity RAM_ctrl is
             result_2 : in std_logic_vector(17 downto 0);
             result_3 : in std_logic_vector(17 downto 0);
             result_4 : in std_logic_vector(17 downto 0);
-            output : in std_logic_vector(8 downto 0)
+            output : out std_logic_vector(8 downto 0)
          );
 
 end RAM_ctrl;
@@ -94,7 +94,7 @@ begin
         next_address <= address;
         next_state <= current_state;
         write_enable <= '1';
-        ram_address <= address
+        ram_address <= address;
         data_in <= "00000000000000" & result_1_reg;
         out_reg_next <= out_reg; 
         case current_state is
@@ -103,7 +103,7 @@ begin
                     next_state <= s_save2;
                     next_address <= address + 1;
                     write_enable <= '0';
-                elsif(ready_to_read='1' & read_ram = '1')
+                elsif(ready_to_read='1' and read_ram = '1') then
                     next_state <= s_read;
                     ram_address <= input;
                 end if;
@@ -123,11 +123,12 @@ begin
                 write_enable <= '0';
                 data_in <= "00000000000000" & result_4_reg;
             when s_read => 
-                next_count <= count + 1;
                 if(count ='0') then 
+                    next_count <= '1';
                     output <= data_out(17 downto 9);
                     out_reg_next <= data_out (8 downto 0);
                 else
+                    next_count <= '0';
                     output <= out_reg;
                 end if;
         end case;
