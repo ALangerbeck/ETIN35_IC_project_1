@@ -13,7 +13,8 @@ entity TOP_matmult is
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
             read_ram : in std_logic; -- added for reading ram function
-            ready  : out std_logic
+            ready  : out std_logic;
+            output : out std_logic_vector(8 downto 0)
          );
 
 end TOP_matmult;
@@ -52,12 +53,14 @@ architecture TOP_matmult_arch of TOP_matmult is
     port (  clk     : in std_logic;
             rst     : in std_logic;
             load    : in std_logic;
+            ready_to_read : in std_logic;
             read_ram : in std_logic; -- added for reading ram function
             input   : in std_logic_vector(7 downto 0);
             result_1 : in std_logic_vector(17 downto 0);
             result_2 : in std_logic_vector(17 downto 0);
             result_3 : in std_logic_vector(17 downto 0);
-            result_4 : in std_logic_vector(17 downto 0)
+            result_4 : in std_logic_vector(17 downto 0);
+            output : in std_logic_vector(8 downto 0)
          );
 
     end component;
@@ -71,6 +74,8 @@ architecture TOP_matmult_arch of TOP_matmult is
 
 begin
    
+    ready <= internal_ready;
+
     inst_Controller : Controller
         port map(  
             clk     => clk,
@@ -84,7 +89,7 @@ begin
             result_2 => result_2,
             result_3 => result_3,
             result_4 => result_4,
-            ready  => ready,
+            ready  => internal_ready,
             address_out => rom_address
          );
 
@@ -93,12 +98,14 @@ begin
             clk     => clk,
             rst     => rst,
             load    => load,
+            ready_to_read => internal_ready,
             read_ram => read_ram,
             input    => input,
             result_1 => result_1,
             result_2 => result_2,
             result_3 => result_3,
-            result_4 => result_4
+            result_4 => result_4,
+            output => output
          );
          
     inst_ROM : fake_rom

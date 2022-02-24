@@ -113,7 +113,7 @@ begin
                     next_state <= s_multiply_state;
                 end if;
             when s_read_ram => 
-                if(count_mul="010") then 
+                if(count_col="010") then 
                     next_state <= s_idle;
                 end if;
         end case;

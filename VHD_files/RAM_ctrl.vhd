@@ -7,12 +7,14 @@ entity RAM_ctrl is
     port(  clk     : in std_logic;
             rst     : in std_logic;
             load    : in std_logic;
+            ready_to_read : in std_logic;
             read_ram : in std_logic; -- added for reading ram function
             input   : in std_logic_vector(7 downto 0);
             result_1 : in std_logic_vector(17 downto 0);
             result_2 : in std_logic_vector(17 downto 0);
             result_3 : in std_logic_vector(17 downto 0);
-            result_4 : in std_logic_vector(17 downto 0)
+            result_4 : in std_logic_vector(17 downto 0);
+            output : in std_logic_vector(8 downto 0)
          );
 
 end RAM_ctrl;
@@ -27,9 +29,10 @@ architecture RAM_ctrl_arch of RAM_ctrl is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
     
-    type state_type is (s_start_save, s_save2, s_save3, s_save4);
+    type state_type is (s_start_save, s_save2, s_save3, s_save4, s_read);
     signal current_state : state_type;
     signal next_state : state_type;
+    signal ram_address : std_logic_vector(7 downto 0);
     signal result_1_reg, result_1_next : std_logic_vector(17 downto 0);
     signal result_2_reg, result_2_next : std_logic_vector(17 downto 0);
     signal result_3_reg, result_3_next : std_logic_vector(17 downto 0);
@@ -40,6 +43,8 @@ architecture RAM_ctrl_arch of RAM_ctrl is
     signal address, next_address : std_logic_vector(7 downto 0);
     signal RY : std_logic;
     signal data_in, data_out : std_logic_vector(31 downto 0);
+    signal out_reg, out_reg_next : std_logic_vector(8 downto 0);
+    signal count, next_count : std_logic; 
 
 
 -- COMPONENT DEFINITION
@@ -89,13 +94,18 @@ begin
         next_address <= address;
         next_state <= current_state;
         write_enable <= '1';
+        ram_address <= address
         data_in <= "00000000000000" & result_1_reg;
+        out_reg_next <= out_reg; 
         case current_state is
             when s_start_save =>
                 if(start='1') then 
                     next_state <= s_save2;
                     next_address <= address + 1;
                     write_enable <= '0';
+                elsif(ready_to_read='1' & read_ram = '1')
+                    next_state <= s_read;
+                    ram_address <= input;
                 end if;
             when s_save2 =>
                 next_state <= s_save3;
@@ -112,6 +122,14 @@ begin
                 next_address <= address + 1;
                 write_enable <= '0';
                 data_in <= "00000000000000" & result_4_reg;
+            when s_read => 
+                next_count <= count + 1;
+                if(count ='0') then 
+                    output <= data_out(17 downto 9);
+                    out_reg_next <= data_out (8 downto 0);
+                else
+                    output <= out_reg;
+                end if;
         end case;
     end process;
 
@@ -120,7 +138,7 @@ begin
         ClkxCI  => clk,
         CSxSI   => LOW,
         WExSI   => write_enable,
-        AddrxDI => address,
+        AddrxDI => ram_address,
         RYxSO   => RY,
         DataxDI => data_in,
         DataxDO => data_out
@@ -140,13 +158,25 @@ begin
     begin 
         if rising_edge(clk) then 
             if rst = '1' then
+                count <= '0';
                 start <= '0';
             else 
+                count <= next_count;
                 start <= load;
             end if;
         end if;
         
     end process; 
+
+    out_buffer : reg 
+    generic map( 
+        W => 9)
+    port map(  
+        clk     => clk,
+        rst     => rst,
+        next_out => out_reg_next,
+        output  => out_reg
+    );
 
     r_result_1 : reg 
     generic map( 

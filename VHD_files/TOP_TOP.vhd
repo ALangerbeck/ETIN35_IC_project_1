@@ -22,6 +22,7 @@ architecture TOP_TOP_arch of TOP_TOP is
     signal input_module : std_logic_vector(7 downto 0);
     signal valid_input_module : std_logic;
     signal ready_module : std_logic;
+    signal output_module : std_logic_vector(8 downto 0);
 
 
 -- COMPONENT DEFINITION
@@ -32,7 +33,8 @@ component TOP_matmult is
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
-            ready  : out std_logic
+            ready  : out std_logic;
+            output : out std_logic_vector(8 downto 0)
          );
 
 end component;
@@ -45,7 +47,8 @@ TOP : TOP_matmult
             rst     => rst,
             input   => input_module,
             valid_input => valid_input_module,
-            ready  => ready_module
+            ready  => ready_module,
+            output => output_module
          );
 
 
