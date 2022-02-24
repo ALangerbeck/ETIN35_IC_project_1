@@ -113,8 +113,8 @@ begin
                     next_state <= s_multiply_state;
                 end if;
             when s_read_ram => 
-                if() then 
-
+                if(count_mul="010") then 
+                    next_state <= s_idle;
                 end if;
         end case;
 
@@ -202,8 +202,8 @@ begin
             end if;
             
             if(count_mul = "111") then
-                        	next_count_col <= count_col + 1;
-                            load <= '1';
+                next_count_col <= count_col + 1;
+                load <= '1';
             end if;
             
         when s_prepare_next_column =>
@@ -213,7 +213,7 @@ begin
             next_count_mul <= "000";
         	--next_count <= (others =>'0');
         when s_read_ram =>
-
+            next_count_mul <= count_mul + 1;
         when others =>
         
         end case;
