@@ -24,6 +24,7 @@ architecture structural of  top_matmult_tb is
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
+            read_ram : in std_logic;
             ready  : out std_logic
          );
 	
@@ -38,6 +39,7 @@ begin
             rst => rst,
             input => input,
             valid_input => valid_input,
+            read_ram => '0',
             ready => ready
     );
 
@@ -51,7 +53,7 @@ begin
 	            valid_input <= '1';
 	            wait for period;
 	            valid_input <= '0';
-                file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\input_stimuli.txt",  read_mode);
+                file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\inputs\input_stimuli.txt",  read_mode);
                 while not endfile(input_file) loop
                     readline(input_file,v_ILINE);
                     read(V_ILINE,variable_input);
