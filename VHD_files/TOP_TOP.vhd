@@ -8,9 +8,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 --Should the top top wrapper have any input or outputs? Or should they just map our signals to propper pads?
 
 entity TOP_TOP is 
-
---write inputs and outputs here and put them through the PADS. 
-
+    port(  
+        rst_in : inout std_logic; --is it really supposed to be inout?
+        clk_in : inout std_logic;
+        input_in : inout std_logic_vector(7 downto 0);
+        valid_input_in : inout std_logic;
+        read_ram_in : inout std_logic;
+        ready_out : inout std_logic;
+        output_out : inout std_logic_vector(8 downto 0)
+        );
 end TOP_TOP;
 
 
@@ -21,6 +27,7 @@ architecture TOP_TOP_arch of TOP_TOP is
     signal rst_module : std_logic;
     signal input_module : std_logic_vector(7 downto 0);
     signal valid_input_module : std_logic;
+    signal read_ram_module : std_logic;
     signal ready_module : std_logic;
     signal output_module : std_logic_vector(8 downto 0);
 
@@ -33,6 +40,7 @@ component TOP_matmult is
             rst     : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
+            read_ram : in std_logic;
             ready  : out std_logic;
             output : out std_logic_vector(8 downto 0)
          );
@@ -55,12 +63,59 @@ end component;
 
 begin 
 
+clk_pad : CPAD_S_74x50u_IN 
+    port map(
+        COREIO => clk_module,
+        PADIO => clk_in
+        );
+
+rst_pad : CPAD_S_74x50u_IN 
+    port map(
+        COREIO => rst_module,
+        PADIO => rst_in
+        );
+
+valid_input_pad : CPAD_S_74x50u_IN 
+    port map(
+        COREIO => valid_input_module,
+        PADIO => valid_input_in
+        );
+
+read_ram_pad : CPAD_S_74x50u_IN 
+    port map(
+        COREIO => read_ram_module,
+        PADIO => read_ram_in
+        );
+
+InPads : for i in 0 to 7 generate
+InPad : CPAD_S_74x50u_IN
+  port map( 
+        COREIO => input_in(i),
+        PADIO => input_module(i)
+        );
+end generate InPads;
+
+ready_pad : CPAD_S_74x50u_OUT 
+    port map(
+        COREIO => ready_module,
+        PADIO => ready_out
+        );
+
+OutPads : for i in 0 to 8 generate
+OutPad : CPAD_S_74x50u_OUT
+  port map( 
+        COREIO => output_out(i),
+        PADIO => output_module(i)
+        );
+end generate OutPads;
+
 TOP : TOP_matmult 
 
     port map(  clk     => clk_module,
             rst     => rst,
             input   => input_module,
             valid_input => valid_input_module,
+            read_ram => ready_ram_module,
             ready  => ready_module,
             output => output_module
          );
