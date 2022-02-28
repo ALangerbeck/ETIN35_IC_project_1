@@ -89,11 +89,11 @@ begin
         end if;
     end process;
 
-    state_logic : process(current_state)
+    state_logic : process(current_state, address, count, result_1_reg, result_2_reg, result_3_reg, result_4_reg, start, ready_to_read, read_ram)
     begin 
         next_address <= address;
         next_state <= current_state;
-	next_count <= count;
+	   next_count <= count;
         write_enable <= '1';
         ram_address <= address;
         data_in <= "00000000000000" & result_1_reg;
