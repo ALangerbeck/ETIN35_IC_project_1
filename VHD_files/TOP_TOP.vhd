@@ -9,7 +9,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity TOP_TOP is 
 
---how to write a port empty entity?
+--write inputs and outputs here and put them through the PADS. 
 
 end TOP_TOP;
 
@@ -38,6 +38,20 @@ component TOP_matmult is
          );
 
 end component;
+
+component CPAD_S_74x50u_IN is 
+    port (
+        COREIO : out std_logic;
+        PADIO : in std_logic
+        );
+end component; 
+
+component CPAD_S_74x50u_OUT is 
+    port (
+        COREIO : in std_logic;
+        PADIO : out std_logic
+        );
+end component; 
 
 begin 
 
