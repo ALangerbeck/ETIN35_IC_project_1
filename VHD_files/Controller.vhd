@@ -367,7 +367,7 @@ begin
     port map(  
         clk     => clk,
         rst     => rst,
-        input   => mu_in2,
+        input   => mu_in3,
         coefficient => coe_in,
         enable    => m_en,
         clear    => clear,
