@@ -93,10 +93,12 @@ begin
     begin 
         next_address <= address;
         next_state <= current_state;
+	next_count <= count;
         write_enable <= '1';
         ram_address <= address;
         data_in <= "00000000000000" & result_1_reg;
         out_reg_next <= out_reg; 
+	output <= (others => '0');
         case current_state is
             when s_start_save =>
                 if(start='1') then 
