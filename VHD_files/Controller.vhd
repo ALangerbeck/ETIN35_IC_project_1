@@ -81,7 +81,10 @@ architecture Controller_arch of Controller is
 
 begin
    	address_out <= address;
-   
+     mu_in1 <= shift_reg_out_1;
+     mu_in2 <= shift_reg_out_2;
+     mu_in3 <= shift_reg_out_3;
+     mu_in4 <= shift_reg_out_4;
     state_logic : process(current_state, valid_input, count,count_col,clk)
     begin 
         next_state <= current_state;
@@ -187,10 +190,6 @@ begin
         when s_multiply_state =>
             next_count_mul <= count_mul +1;
             m_en <= '1';
-            mu_in1 <= shift_reg_out_1;
-            mu_in2 <= shift_reg_out_2;
-            mu_in3 <= shift_reg_out_3;
-            mu_in4 <= shift_reg_out_4;
             if(count_mul(0) = '1') then --unsure about this syntax for count_mul(0)
             	--ROM shenanigans
                 next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
