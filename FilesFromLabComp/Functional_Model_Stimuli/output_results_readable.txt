@@ -1,100 +1,100 @@
 Results for matrix P(1)
--1273
--599
-2566
--2331
-23
-237
-1517
--1514
--486
-652
-4372
--5243
-1583
-1231
-658
--762
-Average value of diagonal elements of matrix = 6.435000e+02
-Maximum value in matrix = 4372, hex(0x01114)
+3320
+5060
+4759
+4645
+3370
+5628
+5870
+3791
+5713
+9980
+9421
+7850
+3785
+4941
+2495
+3011
+Average value of diagonal elements of matrix = 5345
+Maximum value in matrix = 9980, hex(0x026fc)
 *********
 Results for matrix P(2)
-2466
-2788
-4315
-1467
-3320
+3064
+2731
+5761
+5536
+3753
 2572
-5334
-573
-5754
-6255
-8886
-4378
-5208
-2677
-7939
--453
-Average value of diagonal elements of matrix = 3.367750e+03
-Maximum value in matrix = 8886, hex(0x022b6)
+6695
+5451
+6019
+4120
+13261
+11498
+3944
+1780
+4912
+3719
+Average value of diagonal elements of matrix = 5654
+Maximum value in matrix = 13261, hex(0x033cd)
 *********
 Results for matrix P(3)
-577
--490
--2749
-4234
-1420
-1133
--1526
-3565
-3154
--388
--3989
-6320
-2797
-3530
--478
-3754
-Average value of diagonal elements of matrix = 3.687500e+02
-Maximum value in matrix = 6320, hex(0x018b0)
+3646
+9741
+6936
+6895
+2723
+8221
+6793
+8183
+4027
+15462
+13310
+15054
+2480
+5420
+3039
+5600
+Average value of diagonal elements of matrix = 7.694250e+03
+Maximum value in matrix = 15462, hex(0x03c66)
 *********
 Results for matrix P(4)
--2913
-3189
-4223
--1323
--2458
-2781
-6799
--570
--6639
-6852
-10426
--3596
--2376
-2859
-11687
-327
-Average value of diagonal elements of matrix = 2.655250e+03
-Maximum value in matrix = 11687, hex(0x02da7)
+3380
+1754
+2466
+5246
+4714
+2302
+3249
+5982
+6616
+3558
+5251
+10853
+2155
+2072
+1582
+4610
+Average value of diagonal elements of matrix = 3.885750e+03
+Maximum value in matrix = 10853, hex(0x02a65)
 *********
 Results for matrix P(5)
-2385
--17
--2022
--2464
-3513
--94
--1143
--938
-5225
--700
--4187
--2873
-5898
-13
--387
-581
-Average value of diagonal elements of matrix = -3.287500e+02
-Maximum value in matrix = 5898, hex(0x0170a)
+7782
+7830
+6530
+6700
+7087
+5521
+6129
+5272
+12981
+11896
+9772
+10003
+4731
+3718
+4939
+2648
+Average value of diagonal elements of matrix = 6.430750e+03
+Maximum value in matrix = 12981, hex(0x032b5)
 *********

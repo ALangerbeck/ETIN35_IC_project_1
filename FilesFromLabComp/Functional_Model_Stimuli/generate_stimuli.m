@@ -41,8 +41,8 @@ X_W = 8;
 % pick numbers randomly in the dynamic range
 NUM_MATRIX = 5;
 
-X = randn(X_row, X_col, NUM_MATRIX)*(2^(X_W-1)-1);
-X_fi = fi(X,1,X_W, 0);
+X = abs(randn(X_row, X_col, NUM_MATRIX))*(2^(X_W-1)-1);
+X_fi = fi(X,0,X_W, 0);
 for iN = 1:NUM_MATRIX
     for iC = 1:X_col
         for iR = 1:X_row

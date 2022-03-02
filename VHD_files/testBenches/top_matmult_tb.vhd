@@ -47,18 +47,27 @@ begin
 		variable v_ILINE     : line;
 	    variable v_SPACE     : character;
 	    variable variable_input : std_logic_vector(7 downto 0);
+	    variable count : integer;
 	    
-	    begin
+	    begin  
+	           count := 0;
 	            wait until rst = '0' and ready = '1';
 	            valid_input <= '1';
 	            wait for period;
 	            valid_input <= '0';
-                file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\VHD_files\testBenches\inputs\input_stimuli.txt",  read_mode);
+                file_open(input_file, "C:\Users\linat\OneDrive\Documents\GitHub\ETIN35_IC_project_1\FilesFromLabComp\Functional_Model_Stimuli\input_stimuli.txt",  read_mode);
                 while not endfile(input_file) loop
+                    count := count +1;
                     readline(input_file,v_ILINE);
                     read(V_ILINE,variable_input);
                     input <= variable_input;
                     wait for period;
+                    if((count mod 32)= 0) then 
+                        wait until ready = '1';
+                        valid_input <= '1';
+                        wait for period; 
+                        valid_input <= '0';
+                    end if; 
                 end loop;
                 file_close(input_file);
                 wait;
