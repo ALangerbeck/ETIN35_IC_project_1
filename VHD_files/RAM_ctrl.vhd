@@ -75,7 +75,7 @@ begin
 
     LOW  <= '0';
    
-    reg_logic : process(load, result_1_reg, result_2_reg, result_3_reg, result_4_reg)
+    reg_logic : process(load, start, result_1, result_2, result_3, result_4, result_1_reg, result_2_reg, result_3_reg, result_4_reg)
     begin
         result_1_next <= result_1_reg;
         result_2_next <= result_2_reg;
