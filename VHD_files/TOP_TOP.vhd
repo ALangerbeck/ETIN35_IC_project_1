@@ -112,10 +112,10 @@ end generate OutPads;
 TOP : TOP_matmult 
 
     port map(  clk     => clk_module,
-            rst     => rst,
+            rst     => rst_module,
             input   => input_module,
             valid_input => valid_input_module,
-            read_ram => ready_ram_module,
+            read_ram => read_ram_module,
             ready  => ready_module,
             output => output_module
          );
