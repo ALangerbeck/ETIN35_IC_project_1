@@ -29,7 +29,7 @@ architecture RAM_ctrl_arch of RAM_ctrl is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
     
-    type state_type is (s_start_save, s_save2, s_save3, s_save4, s_read);
+    type state_type is (s_start_save, s_save1, s_save2, s_save3, s_save4, s_read);
     signal current_state : state_type;
     signal next_state : state_type;
     signal ram_address : std_logic_vector(7 downto 0);
@@ -89,26 +89,29 @@ begin
         end if;
     end process;
 
-    state_logic : process(current_state, address, count, result_1_reg, result_2_reg, result_3_reg, result_4_reg, start, ready_to_read, read_ram)
+    state_logic : process(current_state, address, count, result_1_reg, result_2_reg, result_3_reg, result_4_reg, start, ready_to_read, read_ram, data_out)
     begin 
         next_address <= address;
         next_state <= current_state;
 	   next_count <= count;
         write_enable <= '1';
         ram_address <= address;
-        data_in <= "00000000000000" & result_1_reg;
+        data_in <= (others => '0');
         out_reg_next <= out_reg; 
 	output <= (others => '0');
         case current_state is
             when s_start_save =>
                 if(start='1') then 
-                    next_state <= s_save2;
-                    next_address <= address + 1;
-                    write_enable <= '0';
+                    next_state <= s_save1;
                 elsif(ready_to_read='1' and read_ram = '1') then
                     next_state <= s_read;
                     ram_address <= input;
                 end if;
+            when s_save1 => 
+                next_state <= s_save2;
+                next_address <= address + 1;
+                write_enable <= '0';
+                data_in <= "00000000000000" & result_1_reg;
             when s_save2 =>
                 next_state <= s_save3;
                 next_address <= address + 1;
@@ -132,6 +135,7 @@ begin
                 else
                     next_count <= '0';
                     output <= out_reg;
+                    next_state <= s_start_save;
                 end if;
         end case;
     end process;

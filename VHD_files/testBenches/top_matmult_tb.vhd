@@ -18,6 +18,8 @@ architecture structural of  top_matmult_tb is
 	signal rst : std_logic := '1';
 	signal input : std_logic_vector(7 downto 0) := "00000000";
 	signal ready : std_logic;
+	signal read_ram : std_logic;
+	signal output : std_logic_vector(8 downto 0);
 	--Component declaration
 	component TOP_matmult is 
 		 port(  clk     : in std_logic;
@@ -25,7 +27,8 @@ architecture structural of  top_matmult_tb is
             input   : in std_logic_vector(7 downto 0);
             valid_input : in std_logic;
             read_ram : in std_logic;
-            ready  : out std_logic
+            ready  : out std_logic;
+            output : out std_logic_vector(8 downto 0)
          );
 	
 	end component;
@@ -39,8 +42,9 @@ begin
             rst => rst,
             input => input,
             valid_input => valid_input,
-            read_ram => '0',
-            ready => ready
+            read_ram => read_ram,
+            ready => ready, 
+            output => output
     );
 
     read_input : process
@@ -51,6 +55,7 @@ begin
 	    
 	    begin  
 	           count := 0;
+	           read_ram <= '0';
 	            wait until rst = '0' and ready = '1';
 	            valid_input <= '1';
 	            wait for period;
@@ -62,7 +67,7 @@ begin
                     read(V_ILINE,variable_input);
                     input <= variable_input;
                     wait for period;
-                    if((count mod 32)= 0) then 
+                    if((count mod 32)= 0 and count/32 /=5 ) then 
                         wait until ready = '1';
                         valid_input <= '1';
                         wait for period; 
@@ -70,7 +75,16 @@ begin
                     end if; 
                 end loop;
                 file_close(input_file);
+                -- test for reading the ram!!!
+                wait until ready = '1';
+                wait for 4*period;
+                read_ram <= '1';
+                input <= (others => '0');
+                wait for period;
+                read_ram <= '0';
                 wait;
+                
+                
 	end process;
 
 end structural;
