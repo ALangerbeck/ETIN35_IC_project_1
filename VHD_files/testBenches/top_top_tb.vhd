@@ -4,11 +4,11 @@ use ieee.std_logic_textio.all;
 use ieee.numeric_std.all;
 use STD.textio.all;
 
-entity top_matmult_tb is
+entity top_top_tb is
 end entity;
 
 
-architecture structural of  top_matmult_tb is
+architecture structural of  top_top_tb is
 
 
 	--Signal Declaration
@@ -21,14 +21,15 @@ architecture structural of  top_matmult_tb is
 	signal read_ram : std_logic;
 	signal output : std_logic_vector(8 downto 0);
 	--Component declaration
-	component TOP_matmult is 
-		 port(  clk     : in std_logic;
-            rst     : in std_logic;
-            input   : in std_logic_vector(7 downto 0);
-            valid_input : in std_logic;
-            read_ram : in std_logic;
-            ready  : out std_logic;
-            output : out std_logic_vector(8 downto 0)
+	component TOP_TOP is 
+		 port(  
+		   rst_in : in std_logic; --is it really supposed to be inout?
+           clk_in : in std_logic;
+           input_in : in std_logic_vector(7 downto 0);
+           valid_input_in : in std_logic;
+           read_ram_in : in std_logic;
+           ready_out : out std_logic;
+           output_out : out std_logic_vector(8 downto 0)
          );
 	
 	end component;
@@ -37,14 +38,14 @@ begin
     clk <= not(clk) after period*0.5;
     rst <= '0' after 2*period;
     
-    DUT: Top_matmult port map(
-            clk => clk,
-            rst => rst,
-            input => input,
-            valid_input => valid_input,
-            read_ram => read_ram,
-            ready => ready, 
-            output => output
+    DUT: TOP_TOP port map(
+            rst_in => rst,
+            clk_in => clk,
+            input_in => input,
+            valid_input_in => valid_input,
+            read_ram_in => read_ram,
+            ready_out => ready, 
+            output_out => output
     );
 
     read_input : process

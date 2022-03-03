@@ -9,13 +9,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity TOP_TOP is 
     port(  
-        rst_in : inout std_logic; --is it really supposed to be inout?
-        clk_in : inout std_logic;
-        input_in : inout std_logic_vector(7 downto 0);
-        valid_input_in : inout std_logic;
-        read_ram_in : inout std_logic;
-        ready_out : inout std_logic;
-        output_out : inout std_logic_vector(8 downto 0)
+        rst_in : in std_logic; --is it really supposed to be inout?
+        clk_in : in std_logic;
+        input_in : in std_logic_vector(7 downto 0);
+        valid_input_in : in std_logic;
+        read_ram_in : in std_logic;
+        ready_out : out std_logic;
+        output_out : out std_logic_vector(8 downto 0)
         );
 end TOP_TOP;
 
@@ -90,8 +90,8 @@ read_ram_pad : CPAD_S_74x50u_IN
 InPads : for i in 0 to 7 generate
 InPad : CPAD_S_74x50u_IN
   port map( 
-        COREIO => input_in(i),
-        PADIO => input_module(i)
+        COREIO => input_module(i),
+        PADIO => input_in(i)
         );
 end generate InPads;
 
@@ -104,8 +104,8 @@ ready_pad : CPAD_S_74x50u_OUT
 OutPads : for i in 0 to 8 generate
 OutPad : CPAD_S_74x50u_OUT
   port map( 
-        COREIO => output_out(i),
-        PADIO => output_module(i)
+        COREIO => output_module(i),
+        PADIO => output_out(i)
         );
 end generate OutPads;
 
