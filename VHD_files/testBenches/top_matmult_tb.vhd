@@ -19,7 +19,7 @@ architecture structural of  top_matmult_tb is
 	signal input : std_logic_vector(7 downto 0) := "00000000";
 	signal ready : std_logic;
 	signal read_ram : std_logic;
-	signal output : std_logic_vector(8 downto 0);
+	signal output : std_logic_vector(5 downto 0);
 	--Component declaration
 	component TOP_matmult is 
 		 port(  clk     : in std_logic;
@@ -28,14 +28,14 @@ architecture structural of  top_matmult_tb is
             valid_input : in std_logic;
             read_ram : in std_logic;
             ready  : out std_logic;
-            output : out std_logic_vector(8 downto 0)
+            output : out std_logic_vector(5 downto 0)
          );
 	
 	end component;
 	
 begin
     clk <= not(clk) after period*0.5;
-    rst <= '0' after 2*period;
+    --rst <= '0' after 2*period;
     
     DUT: Top_matmult port map(
             clk => clk,
@@ -56,11 +56,14 @@ begin
 	    begin  
 	           count := 0;
 	           read_ram <= '0';
-	            wait until rst = '0' and ready = '1';
-	            valid_input <= '1';
+	           rst <= '1'; 
+	           wait for 2*period;
+	           rst <= '0';
+	           wait until rst = '0' and ready = '1';
+	           valid_input <= '1';
 	            wait for period;
 	            valid_input <= '0';
-                file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\FilesFromLabComp\Functional_Model_Stimuli\input_stimuli.txt",  read_mode);
+                file_open(input_file, "C:\Users\linat\OneDrive\Documents\GitHub\ETIN35_IC_project_1\FilesFromLabComp\Functional_Model_Stimuli\input_stimuli.txt",  read_mode);
                 while not endfile(input_file) loop
                     count := count +1;
                     readline(input_file,v_ILINE);

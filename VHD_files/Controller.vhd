@@ -12,6 +12,7 @@ entity Controller is
             dataROM : in std_logic_vector(13 downto 0); 
             --
             read_ram : in std_logic; -- added for reading ram function
+            ready_to_start : in std_logic; 
             load    : out std_logic;
             result_1 : out std_logic_vector(17 downto 0);
             result_2 : out std_logic_vector(17 downto 0);
@@ -85,7 +86,8 @@ begin
      mu_in2 <= shift_reg_out_2;
      mu_in3 <= shift_reg_out_3;
      mu_in4 <= shift_reg_out_4;
-    state_logic : process(current_state, valid_input, count,count_col,clk)
+
+    state_logic : process(current_state, valid_input, count,count_col, count_mul)
     begin 
         next_state <= current_state;
         ready <= '0';
@@ -116,7 +118,7 @@ begin
                     next_state <= s_multiply_state;
                 end if;
             when s_read_ram => 
-                if(count_col="010") then 
+                if(ready_to_start = '1') then 
                     next_state <= s_idle;
                 end if;
         end case;
@@ -180,7 +182,6 @@ begin
         
         case current_state is
         when s_prepare_operation =>
-            next_count_col <= "000"; 
             clear <= '1';
             -- Might change later
             next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
@@ -209,10 +210,8 @@ begin
             clear <= '1';
         when s_idle =>
         	next_count_col <= (others =>'0');
-            next_count_mul <= "000";
+            next_count_mul <= "000"; 
         	--next_count <= (others =>'0');
-        when s_read_ram =>
-            next_count_mul <= count_mul + 1;
         when others =>
         
         end case;

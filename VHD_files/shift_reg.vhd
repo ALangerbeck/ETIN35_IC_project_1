@@ -45,6 +45,15 @@ begin
                 data5 <= data4;
                 data6 <= data5;
                 data7 <= data6;
+            else --changed 3/3 - to remember if synthezis fucks up. 
+                data0 <= data0;
+                data1 <= data1;
+                data2 <= data2;
+                data3 <= data3;
+                data4 <= data4;
+                data5 <= data5;
+                data6 <= data6;
+                data7 <= data7;
             end if;
         end if;
         

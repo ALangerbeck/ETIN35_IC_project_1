@@ -19,7 +19,7 @@ architecture structural of  top_top_tb is
 	signal input : std_logic_vector(7 downto 0) := "00000000";
 	signal ready : std_logic;
 	signal read_ram : std_logic;
-	signal output : std_logic_vector(8 downto 0);
+	signal output : std_logic_vector(5 downto 0);
 	--Component declaration
 	component TOP_TOP is 
 		 port(  
@@ -29,7 +29,7 @@ architecture structural of  top_top_tb is
            valid_input_in : in std_logic;
            read_ram_in : in std_logic;
            ready_out : out std_logic;
-           output_out : out std_logic_vector(8 downto 0)
+           output_out : out std_logic_vector(5 downto 0)
          );
 	
 	end component;
@@ -61,7 +61,7 @@ begin
 	            valid_input <= '1';
 	            wait for period;
 	            valid_input <= '0';
-                file_open(input_file, "C:\Users\98all\Documents\LTH\ETIN35_IC_project_1\FilesFromLabComp\Functional_Model_Stimuli\input_stimuli.txt",  read_mode);
+                file_open(input_file, "C:\Users\linat\OneDrive\Documents\GitHub\ETIN35_IC_project_1\FilesFromLabComp\Functional_Model_Stimuli\input_stimuli.txt",  read_mode);
                 while not endfile(input_file) loop
                     count := count +1;
                     readline(input_file,v_ILINE);
