@@ -19,7 +19,7 @@ architecture structural of  top_top_tb is
 	signal input : std_logic_vector(7 downto 0) := "00000000";
 	signal ready : std_logic;
 	signal read_ram : std_logic;
-	signal output : std_logic_vector(5 downto 0);
+	signal output : std_logic_vector(4 downto 0);
 	--Component declaration
 	component TOP_TOP is 
 		 port(  
@@ -29,7 +29,7 @@ architecture structural of  top_top_tb is
            valid_input_in : in std_logic;
            read_ram_in : in std_logic;
            ready_out : out std_logic;
-           output_out : out std_logic_vector(5 downto 0)
+           output_out : out std_logic_vector(4 downto 0)
          );
 	
 	end component;

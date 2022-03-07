@@ -16,7 +16,7 @@ entity RAM_ctrl is
             result_4 : in std_logic_vector(17 downto 0);
             ready_to_start : out std_logic;
 
-            output : out std_logic_vector(5 downto 0)
+            output : out std_logic_vector(4 downto 0)
          );
 
 end RAM_ctrl;
@@ -91,11 +91,11 @@ begin
         end if;
     end process;
 
-    calculated_matrixes : process(address) --added for refined read, keeps track of how many matrixes has been calculated. 
+    calculated_matrixes : process(address, matrix_calculated_reg) --added for refined read, keeps track of how many matrixes has been calculated. 
     begin 
         matrix_calculated_next <= matrix_calculated_reg;
         if((address="00010000" or address="00100000" or address="00110000" or address="01000000" or address="01010000" or address="01100000" or 
-            address="01110000" or address="10000000" or address="10010000" or address="100110000")and read_matrix_reg/="1001") then 
+            address="01110000" or address="10000000" or address="10010000" or address="100110000")and matrix_calculated_reg/="1001") then 
             matrix_calculated_next <= matrix_calculated_reg +1;
         end if;
     end process;
@@ -124,13 +124,14 @@ begin
                 if(start='1') then 
                     next_state <= s_save1;
                 elsif((read_ram_reg = '1' or read_ram='1')and ready_to_read='1') then
-                    if(read_ram = '1') then 
-                        if((input(3 downto 0)+1)>=matrix_calculated_reg) then
+                    --next_state <= s_read;
+                    if(read_ram = '1') then
+                        if((input(3 downto 0)+1)<= matrix_calculated_reg) then
                             next_state <= s_read;
                             ram_address <= input(3 downto 0) & "0000";
                         end if;
                     else 
-                        if((read_matrix_reg+1)>=matrix_calculated_reg) then
+                        if((read_matrix_reg+1)<=matrix_calculated_reg) then
                             next_state <= s_read;
                             ram_address <= read_matrix_reg & "0000";
                         end if;
@@ -162,15 +163,15 @@ begin
                         read_ram_next <= '0';
                     end if; 
                     next_count <= count +1;
-                    output <= data_out(17 downto 12);
+                    output <= data_out(14 downto 10);
                     out_reg_next <= data_out (11 downto 0);
                 elsif(count = "01") then 
                     next_count <= count +1;
-                    output <= out_reg(11 downto 6);
+                    output <= out_reg(9 downto 5);
                     next_count_result <= count_result +1;
                 else
                     next_count <= "00";
-                    output <= out_reg(5 downto 0);
+                    output <= out_reg(4 downto 0);
                     if(count_result ="0100") then 
                         ready_to_start <= '1';
                     end if;
@@ -214,6 +215,16 @@ begin
         rst     => rst,
         next_out => read_matrix_next,
         output  => read_matrix_reg
+    );
+    
+    matrix_calc_reg : reg 
+    generic map( 
+        W => 4)
+    port map(  
+        clk     => clk,
+        rst     => rst,
+        next_out => matrix_calculated_next,
+        output  => matrix_calculated_reg
     );
 
     count_reg : reg 

@@ -19,7 +19,7 @@ architecture structural of  top_matmult_tb is
 	signal input : std_logic_vector(7 downto 0) := "00000000";
 	signal ready : std_logic;
 	signal read_ram : std_logic;
-	signal output : std_logic_vector(5 downto 0);
+	signal output : std_logic_vector(4 downto 0);
 	--Component declaration
 	component TOP_matmult is 
 		 port(  clk     : in std_logic;
@@ -28,7 +28,7 @@ architecture structural of  top_matmult_tb is
             valid_input : in std_logic;
             read_ram : in std_logic;
             ready  : out std_logic;
-            output : out std_logic_vector(5 downto 0)
+            output : out std_logic_vector(4 downto 0)
          );
 	
 	end component;

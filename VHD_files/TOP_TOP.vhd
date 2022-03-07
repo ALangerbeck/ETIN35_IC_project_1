@@ -15,7 +15,7 @@ entity TOP_TOP is
         valid_input_in : in std_logic;
         read_ram_in : in std_logic;
         ready_out : out std_logic;
-        output_out : out std_logic_vector(5 downto 0)
+        output_out : out std_logic_vector(4 downto 0)
         );
 end TOP_TOP;
 
@@ -29,7 +29,7 @@ architecture TOP_TOP_arch of TOP_TOP is
     signal valid_input_module : std_logic;
     signal read_ram_module : std_logic;
     signal ready_module : std_logic;
-    signal output_module : std_logic_vector(5 downto 0);
+    signal output_module : std_logic_vector(4 downto 0);
 
 
 -- COMPONENT DEFINITION
@@ -42,7 +42,7 @@ component TOP_matmult is
             valid_input : in std_logic;
             read_ram : in std_logic;
             ready  : out std_logic;
-            output : out std_logic_vector(5 downto 0)
+            output : out std_logic_vector(4 downto 0)
          );
 
 end component;
@@ -101,7 +101,7 @@ ready_pad : CPAD_S_74x50u_OUT
         PADIO => ready_out
         );
 
-OutPads : for i in 0 to 5 generate
+OutPads : for i in 0 to 4 generate
 OutPad : CPAD_S_74x50u_OUT
   port map( 
         COREIO => output_module(i),

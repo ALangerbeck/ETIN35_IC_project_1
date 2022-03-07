@@ -14,7 +14,7 @@ entity TOP_matmult is
             valid_input : in std_logic;
             read_ram : in std_logic; -- added for reading ram function
             ready  : out std_logic;
-            output : out std_logic_vector(5 downto 0)
+            output : out std_logic_vector(4 downto 0)
          );
 
 end TOP_matmult;
@@ -63,7 +63,7 @@ architecture TOP_matmult_arch of TOP_matmult is
             result_3 : in std_logic_vector(17 downto 0);
             result_4 : in std_logic_vector(17 downto 0);
             ready_to_start : out std_logic;
-            output : out std_logic_vector(5 downto 0)
+            output : out std_logic_vector(4 downto 0)
          );
     end component;
     
