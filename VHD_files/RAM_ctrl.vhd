@@ -34,7 +34,6 @@ architecture RAM_ctrl_arch of RAM_ctrl is
     signal result_2_reg, result_2_next : std_logic_vector(17 downto 0);
     signal result_3_reg, result_3_next : std_logic_vector(17 downto 0);
     signal result_4_reg, result_4_next : std_logic_vector(17 downto 0);
-    signal start : std_logic;
     signal LOW  : std_logic;
     signal write_enable : std_logic;
     signal address, next_address : std_logic_vector(7 downto 0);
@@ -77,13 +76,13 @@ begin
 
     LOW  <= '0';
    
-    reg_logic : process(load, start, result_1, result_2, result_3, result_4, result_1_reg, result_2_reg, result_3_reg, result_4_reg)
+    reg_logic : process(load, result_1, result_2, result_3, result_4, result_1_reg, result_2_reg, result_3_reg, result_4_reg)
     begin
         result_1_next <= result_1_reg;
         result_2_next <= result_2_reg;
         result_3_next <= result_3_reg;
         result_4_next <= result_4_reg;
-        if(start='1') then
+        if(load='1') then
             result_1_next <= result_1;
             result_2_next <= result_2;
             result_3_next <= result_3;
@@ -100,7 +99,7 @@ begin
         end if;
     end process;
 
-    state_logic : process(current_state, address, count, result_1_reg, result_2_reg, result_3_reg, result_4_reg, start, ready_to_read, read_ram, data_out, read_ram_reg)
+    state_logic : process(current_state, address, count, result_1_reg, result_2_reg, result_3_reg, result_4_reg, ready_to_read, read_ram, data_out, read_ram_reg)
     begin 
         next_address <= address;
         next_state <= current_state;
@@ -124,7 +123,7 @@ begin
 	    output <= (others => '0');
         case current_state is
             when s_start_save =>
-                if(start='1') then 
+                if(load='1') then 
                     next_state <= s_save1;
                 elsif((read_ram_reg = '1' or read_ram='1')and ready_to_read='1') then
                     --next_state <= s_read;
@@ -253,11 +252,9 @@ begin
     begin 
         if rising_edge(clk) then 
             if rst = '1' then
-                start <= '0';
                 read_ram_reg <= '0';
             else 
                 read_ram_reg <= read_ram_next;
-                start <= load;
             end if;
         end if;
         

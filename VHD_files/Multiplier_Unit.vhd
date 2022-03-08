@@ -41,7 +41,7 @@ architecture Multiplier_Unit_arch of Multiplier_Unit is
 
 begin
    
-    result <= result_reg;
+    result <= result_reg_next;
 
    --Will probably need some kind of overflow check here or something like that. 
 
