@@ -14,10 +14,10 @@ entity Controller is
             read_ram : in std_logic; -- added for reading ram function
             ready_to_start : in std_logic; 
             load    : out std_logic;
-            result_1 : out std_logic_vector(17 downto 0);
-            result_2 : out std_logic_vector(17 downto 0);
-            result_3 : out std_logic_vector(17 downto 0);
-            result_4 : out std_logic_vector(17 downto 0);
+            result_1 : out std_logic_vector(14 downto 0);
+            result_2 : out std_logic_vector(14 downto 0);
+            result_3 : out std_logic_vector(14 downto 0);
+            result_4 : out std_logic_vector(14 downto 0);
             ready  : out std_logic;
             address_out: out std_logic_vector(3 downto 0)
          );
@@ -42,7 +42,7 @@ architecture Controller_arch of Controller is
     signal shift_reg_out_1, shift_reg_out_2, shift_reg_out_3, shift_reg_out_4 : std_logic_vector(7 downto 0);
     signal mu_in1, mu_in2, mu_in3, mu_in4 : std_logic_vector(7 downto 0);
     signal coe_in : std_logic_vector(6 downto 0);
-    signal mu_out_1, mu_out_2, mu_out_3, mu_out_4 : std_logic_vector(17 downto 0); --Conplains should be 16 elements has 18
+    signal mu_out_1, mu_out_2, mu_out_3, mu_out_4 : std_logic_vector(14 downto 0);
     signal coe_1, next_coe_1, coe_2, next_coe_2 : std_logic_vector(6 downto 0);
     signal address : std_logic_vector(3 downto 0) := "0000";
     signal next_address : std_logic_vector(3 downto 0);
@@ -57,7 +57,7 @@ architecture Controller_arch of Controller is
                 coefficient : in std_logic_vector(6 downto 0);
                 enable    : in std_logic;
                 clear    : in std_logic;
-                result : out std_logic_vector(17 downto 0)
+                result : out std_logic_vector(14 downto 0)
              );
     end component;
 

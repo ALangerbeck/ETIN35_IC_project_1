@@ -15,7 +15,7 @@ entity Multiplier_Unit is
             coefficient : in std_logic_vector(6 downto 0);
             enable    : in std_logic;
             clear    : in std_logic;
-            result : out std_logic_vector(17 downto 0)
+            result : out std_logic_vector(14 downto 0)
          );
 
 end Multiplier_Unit;
@@ -24,7 +24,7 @@ architecture Multiplier_Unit_arch of Multiplier_Unit is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
 
-    signal result_reg_next, result_reg : std_logic_vector(17 downto 0);
+    signal result_reg_next, result_reg : std_logic_vector(14 downto 0);
 
 
 -- COMPONENT DEFINITION
@@ -58,7 +58,7 @@ begin
     end process;
 
     inst_reg : reg 
-        generic map ( W => 18)
+        generic map ( W => 15)
         port map(  clk     => clk,
                 rst     => rst,
                 next_out => result_reg_next,

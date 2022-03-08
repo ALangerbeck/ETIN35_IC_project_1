@@ -10,10 +10,10 @@ entity RAM_ctrl is
             ready_to_read : in std_logic;
             read_ram : in std_logic; -- added for reading ram function
             input   : in std_logic_vector(7 downto 0);
-            result_1 : in std_logic_vector(17 downto 0);
-            result_2 : in std_logic_vector(17 downto 0);
-            result_3 : in std_logic_vector(17 downto 0);
-            result_4 : in std_logic_vector(17 downto 0);
+            result_1 : in std_logic_vector(14 downto 0);
+            result_2 : in std_logic_vector(14 downto 0);
+            result_3 : in std_logic_vector(14 downto 0);
+            result_4 : in std_logic_vector(14 downto 0);
             ready_to_start : out std_logic;
 
             output : out std_logic_vector(4 downto 0)
@@ -26,14 +26,14 @@ architecture RAM_ctrl_arch of RAM_ctrl is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
     
-    type state_type is (s_start_save, s_save1, s_save2, s_save3, s_save4, s_read);
+    type state_type is (s_start_save, s_save2, s_save3, s_save4, s_read);
     signal current_state : state_type;
     signal next_state : state_type;
     signal ram_address : std_logic_vector(7 downto 0);
-    signal result_1_reg, result_1_next : std_logic_vector(17 downto 0);
-    signal result_2_reg, result_2_next : std_logic_vector(17 downto 0);
-    signal result_3_reg, result_3_next : std_logic_vector(17 downto 0);
-    signal result_4_reg, result_4_next : std_logic_vector(17 downto 0);
+    signal result_1_reg, result_1_next : std_logic_vector(14 downto 0);
+    signal result_2_reg, result_2_next : std_logic_vector(14 downto 0);
+    signal result_3_reg, result_3_next : std_logic_vector(14 downto 0);
+    signal result_4_reg, result_4_next : std_logic_vector(14 downto 0);
     signal LOW  : std_logic;
     signal write_enable : std_logic;
     signal address, next_address : std_logic_vector(7 downto 0);
@@ -76,14 +76,12 @@ begin
 
     LOW  <= '0';
    
-    reg_logic : process(load, result_1, result_2, result_3, result_4, result_1_reg, result_2_reg, result_3_reg, result_4_reg)
+    reg_logic : process(load, result_2, result_3, result_4, result_2_reg, result_3_reg, result_4_reg)
     begin
-        result_1_next <= result_1_reg;
         result_2_next <= result_2_reg;
         result_3_next <= result_3_reg;
         result_4_next <= result_4_reg;
         if(load='1') then
-            result_1_next <= result_1;
             result_2_next <= result_2;
             result_3_next <= result_3;
             result_4_next <= result_4;
@@ -99,7 +97,7 @@ begin
         end if;
     end process;
 
-    state_logic : process(current_state, address, count, result_1_reg, result_2_reg, result_3_reg, result_4_reg, ready_to_read, read_ram, data_out, read_ram_reg)
+    state_logic : process(current_state, address, count, result_2_reg, result_3_reg, result_4_reg, ready_to_read, read_ram, data_out, read_ram_reg, result_1)
     begin 
         next_address <= address;
         next_state <= current_state;
@@ -124,9 +122,11 @@ begin
         case current_state is
             when s_start_save =>
                 if(load='1') then 
-                    next_state <= s_save1;
+                    next_state <= s_save2;
+                    next_address <= address + 1;
+                    write_enable <= '0';
+                    data_in <= "00000000000000000" & result_1;
                 elsif((read_ram_reg = '1' or read_ram='1')and ready_to_read='1') then
-                    --next_state <= s_read;
                     if(read_ram = '1') then
                         if((input(3 downto 0)+1)<= matrix_calculated_reg) then
                             next_state <= s_read;
@@ -139,26 +139,21 @@ begin
                         end if;
                     end if;
                 end if;
-            when s_save1 => 
-                next_state <= s_save2;
-                next_address <= address + 1;
-                write_enable <= '0';
-                data_in <= "00000000000000" & result_1_reg;
             when s_save2 =>
                 next_state <= s_save3;
                 next_address <= address + 1;
                 write_enable <= '0';
-                data_in <= "00000000000000" & result_2_reg;
+                data_in <= "00000000000000000" & result_2_reg;
             when s_save3 =>
                 next_state <= s_save4;
                 next_address <= address + 1;
                 write_enable <= '0';
-                data_in <= "00000000000000" & result_3_reg;
+                data_in <= "00000000000000000" & result_3_reg;
             when s_save4 =>
                 next_state <= s_start_save;
                 next_address <= address + 1;
                 write_enable <= '0';
-                data_in <= "00000000000000" & result_4_reg;
+                data_in <= "00000000000000000" & result_4_reg;
             when s_read => 
                 if(count ="00") then 
                     if(count_result ="0000") then 
@@ -274,19 +269,10 @@ begin
         output  => out_reg
     );
 
-    r_result_1 : reg 
-    generic map( 
-        W => 18)
-    port map(  
-        clk     => clk,
-        rst     => rst,
-        next_out => result_1_next,
-        output  => result_1_reg
-    );
 
     r_result_2 : reg 
     generic map( 
-        W => 18)
+        W => 15)
     port map(  
         clk     => clk,
         rst     => rst,
@@ -296,7 +282,7 @@ begin
 
     r_result_3 : reg 
     generic map( 
-        W => 18)
+        W => 15)
     port map(  
         clk     => clk,
         rst     => rst,
@@ -306,7 +292,7 @@ begin
 
     r_result_4 : reg 
     generic map( 
-        W => 18)
+        W => 15)
     port map(  
         clk     => clk,
         rst     => rst,

@@ -23,7 +23,7 @@ architecture TOP_matmult_arch of TOP_matmult is
 
 -- SIGNAL DEFINITIONS
 
-    signal result_1,result_2,result_3,result_4 : std_logic_vector(17 downto 0);
+    signal result_1,result_2,result_3,result_4 : std_logic_vector(14 downto 0);
     signal internal_ready : std_logic;
     signal load : std_logic;
     signal rom_address: std_logic_vector(3 downto 0);
@@ -42,10 +42,10 @@ architecture TOP_matmult_arch of TOP_matmult is
                read_ram : in std_logic; -- added for reading ram function
                ready_to_start : in std_logic;
                load    : out std_logic;
-               result_1 : out std_logic_vector(17 downto 0);
-               result_2 : out std_logic_vector(17 downto 0);
-               result_3 : out std_logic_vector(17 downto 0);
-               result_4 : out std_logic_vector(17 downto 0);
+               result_1 : out std_logic_vector(14 downto 0);
+               result_2 : out std_logic_vector(14 downto 0);
+               result_3 : out std_logic_vector(14 downto 0);
+               result_4 : out std_logic_vector(14 downto 0);
                ready  : out std_logic;
                address_out: out std_logic_vector(3 downto 0)
          );
@@ -58,10 +58,10 @@ architecture TOP_matmult_arch of TOP_matmult is
             ready_to_read : in std_logic;
             read_ram : in std_logic; -- added for reading ram function
             input   : in std_logic_vector(7 downto 0);
-            result_1 : in std_logic_vector(17 downto 0);
-            result_2 : in std_logic_vector(17 downto 0);
-            result_3 : in std_logic_vector(17 downto 0);
-            result_4 : in std_logic_vector(17 downto 0);
+            result_1 : in std_logic_vector(14 downto 0);
+            result_2 : in std_logic_vector(14 downto 0);
+            result_3 : in std_logic_vector(14 downto 0);
+            result_4 : in std_logic_vector(14 downto 0);
             ready_to_start : out std_logic;
             output : out std_logic_vector(4 downto 0)
          );
