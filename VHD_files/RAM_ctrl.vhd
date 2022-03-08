@@ -171,6 +171,10 @@ begin
                     next_count <= count +1;
                     output <= out_reg(9 downto 5);
                     next_count_result <= count_result +1;
+                    if(count_result /="0000") then 
+                        temp_address <= read_matrix_reg & "0000";
+                        ram_address <= temp_address + count_result;
+                    end if;
                 else
                     next_count <= "00";
                     output <= out_reg(4 downto 0);
@@ -179,9 +183,9 @@ begin
                     end if;
                     if(count_result ="0000") then 
                         next_state <= s_start_save;
-                    else 
-                        temp_address <= read_matrix_reg & "0000";
-                        ram_address <= temp_address + count_result;
+                    --else 
+                        --temp_address <= read_matrix_reg & "0000";
+                        --ram_address <= temp_address + count_result;
                     end if;
                 end if;
         end case;
