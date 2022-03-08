@@ -87,7 +87,7 @@ begin
      mu_in3 <= shift_reg_out_3;
      mu_in4 <= shift_reg_out_4;
 
-    state_logic : process(current_state, valid_input, count,count_col, count_mul)
+    state_logic : process(current_state, valid_input, count,count_col, count_mul, ready_to_start, read_ram)
     begin 
         next_state <= current_state;
         ready <= '0';

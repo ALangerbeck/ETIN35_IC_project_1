@@ -47,7 +47,7 @@ begin
 
     operation : process(input, coefficient, enable, clear, result_reg)
     begin
-        result_reg_next <= result_reg;
+        result_reg_next <= (others => '0');
         if(clear = '1') then
             result_reg_next <= (others => '0');
         elsif (enable = '1') then

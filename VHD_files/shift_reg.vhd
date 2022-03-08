@@ -59,6 +59,5 @@ begin
         
     end process; 
 
-	--output <= data7;
 
 end behavioral; 
