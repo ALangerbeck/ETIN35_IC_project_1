@@ -87,7 +87,7 @@ begin
      mu_in3 <= shift_reg_out_3;
      mu_in4 <= shift_reg_out_4;
 
-    state_logic : process(current_state, valid_input, count,count_col, count_mul, read_ram, ready_to_start)
+    state_logic : process(current_state, valid_input, count,count_col, count_mul)
     begin 
         next_state <= current_state;
         ready <= '0';
@@ -172,9 +172,9 @@ begin
     begin 
         m_en <= '0';
         clear <= '0';
-        next_coe_1 <= coe_1;
-        next_coe_2 <= coe_2;
-        coe_in <= coe_1;
+        --next_coe_1 <= coe_1;
+        --next_coe_2 <= coe_2;
+        coe_in <= (others=>'0');
         next_count_col <= count_col;
         next_count_mul <= count_mul;
         next_address <= address;
@@ -184,20 +184,20 @@ begin
         when s_prepare_operation =>
             clear <= '1';
             -- Might change later
-            next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
-            next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
-            next_address <= address +1;
+            --next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
+            --next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
+            --next_address <= address +1;
             --
         when s_multiply_state =>
             next_count_mul <= count_mul +1;
             m_en <= '1';
             if(count_mul(0) = '1') then --unsure about this syntax for count_mul(0)
             	--ROM shenanigans
-                next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
-                next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
-                coe_in <= coe_2;
+                --next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
+                --next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
+                coe_in <= dataROM(6 downto 0);
             else
-                coe_in <= coe_1;
+                coe_in <= dataROM(13 downto 7);
                 next_address <= address +1;
             end if;
             
@@ -320,25 +320,25 @@ begin
         output  => count_mul
     );
 
-    coe_1_reg : reg 
-    generic map( 
-        W => 7)
-    port map(  
-        clk     => clk,
-        rst     => rst,
-        next_out => next_coe_1,
-        output  => coe_1
-    );
+    --coe_1_reg : reg 
+    --generic map( 
+    --    W => 7)
+    --port map(  
+    --    clk     => clk,
+    --    rst     => rst,
+    --    next_out => next_coe_1,
+    --    output  => coe_1
+    --);
 
-    coe_2_reg : reg 
-    generic map( 
-        W => 7)
-    port map(  
-        clk     => clk,
-        rst     => rst,
-        next_out => next_coe_2,
-        output  => coe_2
-    );
+    --coe_2_reg : reg 
+    --generic map( 
+    --    W => 7)
+    --port map(  
+    --    clk     => clk,
+    --    rst     => rst,
+    --    next_out => next_coe_2,
+    --    output  => coe_2
+    --);
 
     MU_1 : Multiplier_Unit 
     port map(  

@@ -40,7 +40,7 @@ architecture RAM_ctrl_arch of RAM_ctrl is
     signal address, next_address : std_logic_vector(7 downto 0);
     signal RY : std_logic;
     signal data_in, data_out : std_logic_vector(31 downto 0);
-    signal out_reg, out_reg_next : std_logic_vector(11 downto 0);
+    signal out_reg, out_reg_next : std_logic_vector(9 downto 0);
     signal count, next_count : std_logic_vector(1 downto 0); 
     signal count_result, next_count_result : std_logic_vector(3 downto 0);
     signal read_ram_reg, read_ram_next : std_logic;  --added for refined reading
@@ -94,8 +94,8 @@ begin
     calculated_matrixes : process(address, matrix_calculated_reg) --added for refined read, keeps track of how many matrixes has been calculated. 
     begin 
         matrix_calculated_next <= matrix_calculated_reg;
-        if((address="00010000" or address="00100000" or address="00110000" or address="01000000" or address="01010000" or address="01100000" or 
-            address="01110000" or address="10000000" or address="10010000" or address="100110000")and matrix_calculated_reg/="1001") then 
+        if((address="00001111" or address="00011111" or address="00101111" or address="00111111" or address="01001111" or address="01011111" or 
+            address="01101111" or address="01111111" or address="10001111" or address="10011111")and matrix_calculated_reg/="1001") then 
             matrix_calculated_next <= matrix_calculated_reg +1;
         end if;
     end process;
@@ -114,6 +114,9 @@ begin
         read_matrix_next <= read_matrix_reg;
         ready_to_start <= '0';
         temp_address <= "00000000";
+        if(address="10100000") then 
+            next_address <= (others => '0');
+        end if;
         if(read_ram = '1') then 
             read_ram_next <= read_ram;
             read_matrix_next <= input(3 downto 0);
@@ -164,7 +167,7 @@ begin
                     end if; 
                     next_count <= count +1;
                     output <= data_out(14 downto 10);
-                    out_reg_next <= data_out (11 downto 0);
+                    out_reg_next <= data_out (9 downto 0);
                 elsif(count = "01") then 
                     next_count <= count +1;
                     output <= out_reg(9 downto 5);
@@ -181,7 +184,6 @@ begin
                         temp_address <= read_matrix_reg & "0000";
                         ram_address <= temp_address + count_result;
                     end if;
-                    
                 end if;
         end case;
     end process;
@@ -263,7 +265,7 @@ begin
 
     out_buffer : reg 
     generic map( 
-        W => 12)
+        W => 10)
     port map(  
         clk     => clk,
         rst     => rst,
