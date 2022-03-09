@@ -1,0 +1,48 @@
+
+
+Working Directory = /h/d8/j/al5878la-s/ICP1/Synthesis_V2/Synt_Script
+QoS Summary for TOP_TOP
+========================================================================================
+Metric                  rep1      
+========================================================================================
+Slack (ps):                1,939
+  R2R (ps):                1,939
+  I2R (ps):                5,241
+  R2O (ps):                6,114
+  I2O (ps):             no_value
+  CG  (ps):             no_value
+TNS (ps):                      0
+  R2R (ps):                    0
+  I2R (ps):                    0
+  R2O (ps):                    0
+  I2O (ps):             no_value
+  CG  (ps):             no_value
+Failing Paths:                 0
+Area:                    103,756
+Instances:                 2,387
+Utilization (%):            0.00
+Tot. Net Length (um):   no_value
+Avg. Net Length (um):   no_value
+Route Overflow H (%):   no_value
+Route Overflow V (%):   no_value
+Seq MBCI Coverage(%):       0.00
+Norm Cong Hotspot Area:
+  Max Cong(4stdcell):   no_value
+  Tot Cong(4stdcell):   no_value
+========================================================================================
+CPU  Runtime (h:m:s):   00:00:44
+Real Runtime (h:m:s):   00:00:39
+CPU  Elapsed (h:m:s):   00:00:51
+Real Elapsed (h:m:s):   00:00:41
+Memory (MB):              708.96
+========================================================================================
+
+========================================================================================
+Flow Settings:
+========================================================================================
+Total Runtime (h:m:s): 00:00:41
+Total Memory (MB):     708.96
+Executable Version:    16.12
+========================================================================================
+
+
