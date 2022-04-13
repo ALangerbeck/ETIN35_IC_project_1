@@ -4,15 +4,13 @@ use ieee.numeric_std.all;
 
 
 
--- -- ST_SPHDL_160x32_mem2011
---words = 160
---bits  = 32
+
 
 entity SRAM_SP_WRAPPER is
   port (
     ClkxCI  : in  std_logic;
-    CSxSI   : in  std_logic;            -- Active Low
-    WExSI   : in  std_logic;            --Active Low
+    CSxSI   : in  std_logic;            
+    WExSI   : in  std_logic;          
     AddrxDI : in  std_logic_vector (7 downto 0);
     RYxSO   : out std_logic;
     DataxDI : in  std_logic_vector (31 downto 0);
@@ -44,7 +42,6 @@ begin
   LOW  <= '0';
   HIGH <= '1';
 
--- mem2011
   DUT_ST_SPHDL_160x32_mem2011 : ST_SPHDL_160x32m8_L
     port map(
       Q       => DataxDO,

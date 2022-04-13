@@ -1,11 +1,5 @@
-
-
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
---Should the top top wrapper have any input or outputs? Or should they just map our signals to propper pads?
 
 entity TOP_TOP is 
     port(  
@@ -18,7 +12,6 @@ entity TOP_TOP is
         output_out : out std_logic_vector(4 downto 0)
         );
 end TOP_TOP;
-
 
 architecture TOP_TOP_arch of TOP_TOP is
 
@@ -119,7 +112,5 @@ TOP : TOP_matmult
             ready  => ready_module,
             output => output_module
          );
-
-
 
 end TOP_TOP_arch;

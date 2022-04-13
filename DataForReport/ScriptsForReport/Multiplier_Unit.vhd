@@ -26,7 +26,6 @@ architecture Multiplier_Unit_arch of Multiplier_Unit is
 
     signal result_reg_next, result_reg : std_logic_vector(17 downto 0);
 
-
 -- COMPONENT DEFINITION
 
     component reg is 
@@ -38,12 +37,9 @@ architecture Multiplier_Unit_arch of Multiplier_Unit is
              );
     end component; 
 
-
 begin
    
-    result <= result_reg;
-
-   --Will probably need some kind of overflow check here or something like that. 
+    result <= result_reg; 
 
     operation : process(input, coefficient, enable, clear, result_reg)
     begin
@@ -64,7 +60,5 @@ begin
                 next_out => result_reg_next,
                 output  => result_reg
              ); 
-
-
-
+        
 end Multiplier_Unit_arch;

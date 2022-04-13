@@ -1,4 +1,4 @@
-# Set the top_entity_name you want to do synthesis on
+
 set DESIGN TOP_TOP
 
 set RTL "${ROOT}/VHD_files"
@@ -22,13 +22,11 @@ CORE65LPHVT_wc_1.10V_125C.lib \
 SPHD110420_wc_1.10V_125C.lib \
 Pads_Oct2012.lib} /
 
-# put all your design files here
 set DESIGN_FILES "${RTL}/TOP_TOP.vhd ${RTL}/TOP_matmult.vhd  ${RTL}/Controller.vhd  ${RTL}/fake_ROM.vhd  ${RTL}/RAM_ctrl.vhd  ${RTL}/Multiplier_Unit.vhd ${RTL}/shift_reg.vhd  ${RTL}/reg.vhd ${RTL}/SRAM_SP_WRAPPER.vhd"
 
 set SYN_EFF high
 set MAP_EFF high
 set OPT_EFF high
-
 
 set_attribute syn_generic_effort ${SYN_EFF}
 set_attribute syn_map_effort ${MAP_EFF}

@@ -23,7 +23,7 @@ architecture structural of  top_top_tb is
 	--Component declaration
 	component TOP_TOP is 
 		 port(  
-		   rst_in : in std_logic; --is it really supposed to be inout?
+		   rst_in : in std_logic;
            clk_in : in std_logic;
            input_in : in std_logic_vector(7 downto 0);
            valid_input_in : in std_logic;
@@ -84,8 +84,7 @@ begin
                 wait for 4*period;
                 read_ram <= '0';
                 wait;
-                
-                
+                             
 	end process;
 
 end structural;

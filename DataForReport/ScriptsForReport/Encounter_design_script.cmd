@@ -1,17 +1,4 @@
-#######################################################
-#                                                     
-#  Encounter Command Logging File                     
-#  Created on Wed Mar  9 12:43:52 2022                
-#                                                     
-#######################################################
-
-#@(#)CDS: Encounter v14.28-s033_1 (64bit) 03/21/2016 13:34 (Linux 2.6.18-194.el5)
-#@(#)CDS: NanoRoute v14.28-s005 NR160313-1959/14_28-UB (database version 2.30, 267.6.1) {superthreading v1.25}
-#@(#)CDS: CeltIC v14.28-s006_1 (64bit) 03/08/2016 00:08:23 (Linux 2.6.18-194.el5)
-#@(#)CDS: AAE 14.28-s002 (64bit) 03/21/2016 (Linux 2.6.18-194.el5)
-#@(#)CDS: CTE 14.28-s007_1 (64bit) Mar  7 2016 23:11:05 (Linux 2.6.18-194.el5)
-#@(#)CDS: CPE v14.28-s006
-#@(#)CDS: IQRC/TQRC 14.2.2-s217 (64bit) Wed Apr 15 23:10:24 PDT 2015 (Linux 2.6.18-194.el5)
+# SPECIFY PATHS TO LEF,LIBS AND INITIAL FILES
 
 set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
 suppressMessage ENCEXT-2799
@@ -51,6 +38,7 @@ set tso_post_client_restore_command {update_timing ; write_eco_opt_db ;}
 set init_io_file ../MiscPnRFiles/TOP_TOP_FINAL.io
 init_design
 
+# SET GLOBAL NETS FOR VDD AND GND
 globalNetConnect VDD -type pgpin -pin vdd -inst *
 globalNetConnect VDD -type tiehi -inst *
 globalNetConnect GND -type tielo -inst *
@@ -58,6 +46,8 @@ globalNetConnect GND -type pgpin -pin gnd -inst *
 globalNetConnect GND -type pgpin -pin GNDC -inst *
 globalNetConnect VDD -type pgpin -pin VDDC -inst *
 
+
+# REZISE FLORRPLAN
 fit
 setIoFlowFlag 0
 floorPlan -site CORE -s 305.0 300.0 20.0 20.0 20.0 20.0
@@ -65,20 +55,28 @@ uiSetTool select
 getIoFlowFlag
 fit
 
+# MOVE RAM INTO PLACE
 setObjFPlanBox Instance TOP/inst_RAM_ctrl/RAM/DUT_ST_SPHDL_160x32_mem2011 95.551 354.428 400.351 395.428
 
+
+# ADD HALO AROUND MEMORY WHERE CELLS CANT BE PLACED
 selectInst TOP/inst_RAM_ctrl/RAM/DUT_ST_SPHDL_160x32_mem2011
 addHaloToBlock {10 10 10 10} -allBlock
 
+# REMOVE CORE ROWS UNDER MEMORY
 deselectAll
 selectInst TOP/inst_RAM_ctrl/RAM/DUT_ST_SPHDL_160x32_mem2011
 cutRow -selected
 
+# ADD RING CONNECTORS FOR GND AVND VDD
 addRing -skip_via_on_wire_shape Noshape -skip_via_on_pin Standardcell -stacked_via_top_layer AP -type core_rings -jog_distance 2.5 -threshold 2.5 -nets {GND VDD} -follow core -stacked_via_bottom_layer M1 -layer {bottom M3 top M3 right M4 left M4} -width 2 -spacing 2 -offset 2
 deselectAll
+
+# RINGS UNDER MEMORY
 selectInst TOP/inst_RAM_ctrl/RAM/DUT_ST_SPHDL_160x32_mem2011
 addRing -skip_via_on_wire_shape Noshape -skip_via_on_pin Standardcell -stacked_via_top_layer AP -around cluster -jog_distance 2.5 -threshold 2.5 -type block_rings -nets {GND VDD} -follow core -stacked_via_bottom_layer M1 -layer {bottom M3 top M3 right M4 left M4} -width 2 -spacing 2 -offset 2 -skip_side {left top right}
 
+# CREATE VERTIAL AND HORIZONTAL STRIPES
 set sprCreateIeStripeNets {}
 set sprCreateIeStripeLayers {}
 set sprCreateIeStripeWidth 10.0
@@ -87,18 +85,23 @@ set sprCreateIeStripeThreshold 1.0
 addStripe -skip_via_on_wire_shape Noshape -block_ring_top_layer_limit M5 -max_same_layer_jog_length 6 -padcore_ring_bottom_layer_limit M3 -set_to_set_distance 100 -skip_via_on_pin Standardcell -stacked_via_top_layer AP -padcore_ring_top_layer_limit M5 -spacing 2 -merge_stripes_value 2.5 -layer M4 -block_ring_bottom_layer_limit M3 -width 3 -nets {GND VDD} -stacked_via_bottom_layer M1
 addStripe -skip_via_on_wire_shape Noshape -block_ring_top_layer_limit M4 -max_same_layer_jog_length 6 -padcore_ring_bottom_layer_limit M2 -set_to_set_distance 100 -skip_via_on_pin Standardcell -stacked_via_top_layer AP -padcore_ring_top_layer_limit M4 -spacing 2 -merge_stripes_value 2.5 -direction horizontal -layer M3 -block_ring_bottom_layer_limit M2 -width 3 -nets {GND VDD} -stacked_via_bottom_layer M1
 
+# CREATE WELLTAP
 addWellTap -cell HS65_LH_FILLERSNPWPFP3 -cellInterval 25 -prefix WELLTAP
 
+# CREATE PLACEMENT BLOCKAGE AND PLACE STANDARD CELLS
 setPlaceMode -prerouteAsObs {1 2 3 4 5 6 7 8}
 setPlaceMode -fp false
 placeDesign
 
+# SPECIFY BUFFERS FOR CLOCK
 createClockTreeSpec -bufferList {CLOCKTREE HS65_LH_CNBFX10 HS65_LH_CNBFX103 HS65_LH_CNBFX124 HS65_LH_CNBFX14 HS65_LH_CNBFX17 HS65_LH_CNBFX21 HS65_LH_CNBFX24 HS65_LH_CNBFX27 HS65_LH_CNBFX31 HS65_LH_CNBFX34 HS65_LH_CNBFX38 HS65_LH_CNBFX38_0 HS65_LH_CNBFX38_1 HS65_LH_CNBFX38_10 HS65_LH_CNBFX38_11 HS65_LH_CNBFX38_12 HS65_LH_CNBFX38_13 HS65_LH_CNBFX38_14 HS65_LH_CNBFX38_15 HS65_LH_CNBFX38_16 HS65_LH_CNBFX38_17 HS65_LH_CNBFX38_18 HS65_LH_CNBFX38_19 HS65_LH_CNBFX38_2 HS65_LH_CNBFX38_20 HS65_LH_CNBFX38_21 HS65_LH_CNBFX38_22 HS65_LH_CNBFX38_23 HS65_LH_CNBFX38_3 HS65_LH_CNBFX38_4 HS65_LH_CNBFX38_5 HS65_LH_CNBFX38_6 HS65_LH_CNBFX38_7 HS65_LH_CNBFX38_8 HS65_LH_CNBFX38_9 HS65_LH_CNBFX41 HS65_LH_CNBFX45 HS65_LH_CNBFX48 HS65_LH_CNBFX52 HS65_LH_CNBFX55 HS65_LH_CNBFX58 HS65_LH_CNBFX62 HS65_LH_CNBFX82 HS65_LH_CNIVX10 HS65_LH_CNIVX103 HS65_LH_CNIVX124 HS65_LH_CNIVX14 HS65_LH_CNIVX17 HS65_LH_CNIVX21 HS65_LH_CNIVX24 HS65_LH_CNIVX27 HS65_LH_CNIVX3 HS65_LH_CNIVX31 HS65_LH_CNIVX34 HS65_LH_CNIVX38 HS65_LH_CNIVX41 HS65_LH_CNIVX45 HS65_LH_CNIVX48 HS65_LH_CNIVX52 HS65_LH_CNIVX55 HS65_LH_CNIVX58 HS65_LH_CNIVX62 HS65_LH_CNIVX7 HS65_LH_CNIVX82} -file Clock.ctstch
 
+# CREATE CLOCK TREE REMOVE TRIAL ROUTES
 setCTSMode -engine ck
 clockDesign -specFile Clock.ctstch -outDir clock_report -fixedInstBeforeCTS
 deleteTrialRoute
 
+# CREATE SUFFICIENT SPACING FOR BETWEEN PADS
 deselectAll
 selectInst PcornerUL
 selectInst PGND1
@@ -134,14 +137,17 @@ selectInst {InPads[3].InPad}
 selectInst clk_pad
 spaceObject -fixSide bottom -space 15
 
+# ADD IO FILLERS
 addIoFiller -cell PADSPACE_74x1u PADSPACE_74x2u PADSPACE_74x4u PADSPACE_74x8u PADSPACE_74x16u -prefix IO_FILLER -side n
 addIoFiller -cell PADSPACE_74x1u PADSPACE_74x2u PADSPACE_74x4u PADSPACE_74x8u PADSPACE_74x16u -prefix IO_FILLER -side e
 addIoFiller -cell PADSPACE_74x1u PADSPACE_74x2u PADSPACE_74x4u PADSPACE_74x8u PADSPACE_74x16u -prefix IO_FILLER -side s
 addIoFiller -cell PADSPACE_74x1u PADSPACE_74x2u PADSPACE_74x4u PADSPACE_74x8u PADSPACE_74x16u -prefix IO_FILLER -side w
 deselectAll
 
+# SPECIAL ROUTING FOR GND AND VDD
 sroute -connect { blockPin padPin padRing corePin floatingStripe } -layerChangeRange { M1 AP } -blockPinTarget { nearestTarget } -padPinPortConnect { allPort oneGeom } -padPinTarget { nearestTarget } -corePinTarget { firstAfterRowEnd } -floatingStripeTarget { blockring padring ring stripe ringpin blockpin followpin } -allowJogging 1 -crossoverViaLayerRange { M1 AP } -nets { GND VDD } -allowLayerChange 1 -blockPin useLef -targetViaLayerRange { M1 AP }
 
+# ROUTING FOR THE REST
 setNanoRouteMode -quiet -timingEngine {}
 setNanoRouteMode -quiet -routeWithSiPostRouteFix 0
 setNanoRouteMode -quiet -drouteStartIteration default
@@ -152,8 +158,10 @@ setNanoRouteMode -quiet -routeWithTimingDriven false
 setNanoRouteMode -quiet -routeWithSiDriven false
 routeDesign -globalDetail
 
+# COMMAND ENABLING US TO ANAYLSE TIMING
 setAnalysisMode -analysisType onChipVariation
 
+# TIMING OPTIMIZATION
 setOptMode -fixCap true -fixTran true -fixFanoutLoad false
 optDesign -postRoute -hold
 
@@ -166,6 +174,7 @@ optDesign -postRoute -hold
 #setOptMode -fixCap false -fixTran false -fixFanoutLoad true
 #optDesign -postRoute -hold
 
+# ADD FILLER CELLS
 getFillerMode -quiet
 addFiller -cell HS65_LS_FILLERPFP4 HS65_LL_FILLERPFP4 HS65_LH_FILLERPFP4 HS65_LH_FILLERPFP3 HS65_LS_FILLERPFP3 HS65_LL_FILLERPFP3 HS65_LS_FILLERPFP2 HS65_LL_FILLERPFP2 HS65_LH_FILLERPFP2 HS65_LH_FILLERPFP1 HS65_LL_FILLERPFP1 HS65_LS_FILLERPFP1 -prefix FILLER -markFixed
 
@@ -173,6 +182,7 @@ addFiller -cell HS65_LS_FILLERPFP4 HS65_LL_FILLERPFP4 HS65_LH_FILLERPFP4 HS65_LH
 all_hold_analysis_views 
 all_setup_analysis_views 
 
+# WRITE STANDARD DELAY FILE
 write_sdf -version2.1 -interconn nooutport TOP_TOP.sdf
 
 

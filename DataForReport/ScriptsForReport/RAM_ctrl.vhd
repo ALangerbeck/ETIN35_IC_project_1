@@ -43,9 +43,9 @@ architecture RAM_ctrl_arch of RAM_ctrl is
     signal out_reg, out_reg_next : std_logic_vector(11 downto 0);
     signal count, next_count : std_logic_vector(1 downto 0); 
     signal count_result, next_count_result : std_logic_vector(3 downto 0);
-    signal read_ram_reg, read_ram_next : std_logic;  --added for refined reading
-    signal read_matrix_reg, read_matrix_next : std_logic_vector(3 downto 0); --added for refined reading
-    signal matrix_calculated_reg, matrix_calculated_next : std_logic_vector(3 downto 0); --added for refined reading
+    signal read_ram_reg, read_ram_next : std_logic;
+    signal read_matrix_reg, read_matrix_next : std_logic_vector(3 downto 0);
+    signal matrix_calculated_reg, matrix_calculated_next : std_logic_vector(3 downto 0);
     signal temp_address : std_logic_vector(7 downto 0);
 
 
@@ -62,16 +62,15 @@ architecture RAM_ctrl_arch of RAM_ctrl is
 
     component SRAM_SP_WRAPPER is
       port (
-        ClkxCI  : in  std_logic;  -- Clk
-        CSxSI   : in  std_logic;  --??,put as always low, test          -- Active Low
-        WExSI   : in  std_logic;  --Write_enable          --Active Low
-        AddrxDI : in  std_logic_vector (7 downto 0); --Address
+        ClkxCI  : in  std_logic; 
+        CSxSI   : in  std_logic;  
+        WExSI   : in  std_logic;  
+        AddrxDI : in  std_logic_vector (7 downto 0);
         RYxSO   : out std_logic; --??
-        DataxDI : in  std_logic_vector (31 downto 0); --Data in
-        DataxDO : out std_logic_vector (31 downto 0) --Data out
+        DataxDI : in  std_logic_vector (31 downto 0);
+        DataxDO : out std_logic_vector (31 downto 0)
         );
     end component;
-
 
 begin
 
@@ -91,7 +90,7 @@ begin
         end if;
     end process;
 
-    calculated_matrixes : process(address, matrix_calculated_reg) --added for refined read, keeps track of how many matrixes has been calculated. 
+    calculated_matrixes : process(address, matrix_calculated_reg)
     begin 
         matrix_calculated_next <= matrix_calculated_reg;
         if((address="00010000" or address="00100000" or address="00110000" or address="01000000" or address="01010000" or address="01100000" or 
@@ -319,6 +318,5 @@ begin
             current_state <= next_state;
         end if;
     end process; 
-
 
 end RAM_ctrl_arch;

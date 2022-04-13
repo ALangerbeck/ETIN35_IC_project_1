@@ -1,10 +1,5 @@
-
-
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
 
 entity TOP_matmult is 
 
@@ -39,7 +34,7 @@ architecture TOP_matmult_arch of TOP_matmult is
                -- Temporary...maybe..perhaps
                dataROM : in std_logic_vector(13 downto 0); 
                --
-               read_ram : in std_logic; -- added for reading ram function
+               read_ram : in std_logic;
                ready_to_start : in std_logic;
                load    : out std_logic;
                result_1 : out std_logic_vector(17 downto 0);
@@ -56,7 +51,7 @@ architecture TOP_matmult_arch of TOP_matmult is
             rst     : in std_logic;
             load    : in std_logic;
             ready_to_read : in std_logic;
-            read_ram : in std_logic; -- added for reading ram function
+            read_ram : in std_logic;
             input   : in std_logic_vector(7 downto 0);
             result_1 : in std_logic_vector(17 downto 0);
             result_2 : in std_logic_vector(17 downto 0);

@@ -11,8 +11,6 @@ set ClkSlew 500
 set InputDelay 500
 set OutputDelay 500
 
-# Remember to change the -port ClkxC* to the actual name of clock port/pin in your design
-
 define_clock -name $ClkName -period $PERIOD -design $ClkTop -domain $ClkDomain [find / -port clk_in*]
 
 set_attribute clock_network_late_latency $ClkLatency $ClkName

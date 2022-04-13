@@ -28,21 +28,21 @@ architecture Controller_arch of Controller is
 
 -- SIGNAL DEFINITIONS HERE IF NEEDED
 
-    type state_type is (s_idle, s_shift_input, s_prepare_operation, s_multiply_state, s_prepare_next_column, s_read_ram); --not sure about this.
+    type state_type is (s_idle, s_shift_input, s_prepare_operation, s_multiply_state, s_prepare_next_column, s_read_ram);
     signal current_state : state_type := s_idle;
     signal next_state : state_type;
     signal shift_count : std_logic_vector (1 downto 0) := "00";
     signal next_shift_count : std_logic_vector (1 downto 0);
     signal count : std_logic_vector (4 downto 0) := "00000";
     signal next_count : std_logic_vector (4 downto 0);
-    signal count_col, next_count_col : std_logic_vector(2 downto 0); --could be smaller
+    signal count_col, next_count_col : std_logic_vector(2 downto 0);
     signal count_mul, next_count_mul : std_logic_vector(2 downto 0);
     signal en1, en2, en3, en4, m_en, clear : std_logic;
     signal shift_reg_in_1, shift_reg_in_2, shift_reg_in_3, shift_reg_in_4 : std_logic_vector(7 downto 0);
     signal shift_reg_out_1, shift_reg_out_2, shift_reg_out_3, shift_reg_out_4 : std_logic_vector(7 downto 0);
     signal mu_in1, mu_in2, mu_in3, mu_in4 : std_logic_vector(7 downto 0);
     signal coe_in : std_logic_vector(6 downto 0);
-    signal mu_out_1, mu_out_2, mu_out_3, mu_out_4 : std_logic_vector(17 downto 0); --Conplains should be 16 elements has 18
+    signal mu_out_1, mu_out_2, mu_out_3, mu_out_4 : std_logic_vector(17 downto 0);
     signal coe_1, next_coe_1, coe_2, next_coe_2 : std_logic_vector(6 downto 0);
     signal address : std_logic_vector(3 downto 0) := "0000";
     signal next_address : std_logic_vector(3 downto 0);
@@ -100,7 +100,7 @@ begin
                     next_state <= s_read_ram;
                 end if; 
             when s_shift_input =>
-                if(count = "11111") then --not compeletly sure of this timing, maybe change, but then neccessary to change ASMD
+                if(count = "11111") then
                     next_state <= s_prepare_operation;
                 end if;
             when s_prepare_operation =>
@@ -150,7 +150,7 @@ begin
                     en3 <= '1';
                 when "11" =>
                     en4 <= '1';
-                when others => -- should never happen but vivado complains
+                when others =>
 
             end case;
         when s_multiply_state =>
@@ -184,17 +184,17 @@ begin
         when s_prepare_operation =>
             clear <= '1';
             -- Might change later
-            next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
-            next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
+            next_coe_1 <= dataROM(13 downto 7);
+            next_coe_2 <= dataROM(6 downto 0);
             next_address <= address +1;
             --
         when s_multiply_state =>
             next_count_mul <= count_mul +1;
             m_en <= '1';
-            if(count_mul(0) = '1') then --unsure about this syntax for count_mul(0)
+            if(count_mul(0) = '1') then
             	--ROM shenanigans
-                next_coe_1 <= dataROM(13 downto 7); --assign from rom memory
-                next_coe_2 <= dataROM(6 downto 0); --assign from rom memory
+                next_coe_1 <= dataROM(13 downto 7);
+                next_coe_2 <= dataROM(6 downto 0);
                 coe_in <= coe_2;
             else
                 coe_in <= coe_1;
@@ -392,6 +392,5 @@ begin
             current_state <= next_state;
         end if;
     end process; 
-
 
 end Controller_arch;
